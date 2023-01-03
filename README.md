@@ -10,6 +10,7 @@ This is a template for creating documentation with [Nextra](https://nextra.site)
 
 [Nextra: Docs Starter Kit](https://vercel.com/templates/next.js/documentation-starter-kit)  
 [runkit-embed-react](https://www.npmjs.com/package/runkit-embed-react)  
+[RunKit Embed Component](https://github.com/runkitdev/react-runkit)  
 [RunKit + npm](https://npm.runkit.com/lodash)  
 [lodash](https://lodash.com/)  
 
