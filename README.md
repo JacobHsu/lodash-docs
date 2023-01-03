@@ -6,6 +6,18 @@ This is a template for creating documentation with [Nextra](https://nextra.site)
 
 [![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
 
+## References
+
+[Nextra: Docs Starter Kit](https://vercel.com/templates/next.js/documentation-starter-kit)  
+[runkit-embed-react](https://www.npmjs.com/package/runkit-embed-react)  
+[RunKit + npm](https://npm.runkit.com/lodash)  
+[lodash](https://lodash.com/)  
+
+## Note
+
+Module not found: Can't resolve 'prop-types'  
+`pnpm i prop-types -D`
+
 ## Quick Start
 
 Click the button to clone this repository and deploy it on Vercel:

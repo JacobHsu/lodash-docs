@@ -1,0 +1,25 @@
+# `_.chunk(array, [size=1])`
+
+## Arguments
+`array (Array)`: The array to process.
+`[size=1] (number)`: The length of each chunk
+
+## Returns
+`(Array)`: Returns the new array of chunks.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+  return (
+    <div>
+      <Embed source={`var chunk = require("lodash/chunk");
+chunk(['a', 'b', 'c', 'd'], 2)
+      `} />
+    </div>
+  );
+};
+
+<Demo/>
+<script src='https://embed.runkit.com'></script>
