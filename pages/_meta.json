@@ -1,16 +1,14 @@
 {
   "index": "Introduction",
   "another": "Another Page",
-  "array": "Array",
-  "advanced": "Advanced (A Folder)",
   "about": {
     "title": "About",
     "type": "page"
   },
   "contact": {
-    "title": "Contact ↗",
+    "title": "Lodash ↗",
     "type": "page",
-    "href": "https://twitter.com/shuding_",
+    "href": "https://lodash.com/",
     "newWindow": true
   }
 }
