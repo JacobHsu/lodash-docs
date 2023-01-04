@@ -1,0 +1,31 @@
+# `_.concat(array, [values])`
+
+Creates a new array concatenating array with any additional arrays and/or values.
+
+## Arguments
+`array (Array)`: The array to concatenate.  
+`[values] (...*)`: The values to concatenate.  
+
+## Returns
+`(Array):` Returns the new concatenated array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var concat = require("lodash/concat");
+var array = [1];
+var other = concat(array, 2, [3], [[4]]);
+console.log(other);
+console.log(array);
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+<script src='https://embed.runkit.com'></script>
