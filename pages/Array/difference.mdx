@@ -26,3 +26,47 @@ difference([2, 1], [2, 3]);
 };
 
 <Demo/>
+
+## Deep
+
+export const Difference = () => {
+var code =  `function difference(array, ...values) {
+  return values;
+}
+difference([2, 1], [2, 3]);
+// => [[2, 3]]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Difference/>
+
+export const BaseFlatten = () => {
+var code =  `function baseFlatten(array, depth) {
+  const result = []
+  if (array == null) {
+    return result
+  }
+  for (const value of array) {
+    if (depth > 0) {
+      result.push(...value)
+    }
+  }
+  return result
+}
+baseFlatten([[2, 3]], 1);
+// => [2, 3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<BaseFlatten/>
+
