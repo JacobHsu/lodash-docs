@@ -29,3 +29,56 @@ differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor);
 };
 
 <Demo/>
+
+## Deep
+
+export const DifferenceBy = () => {
+var code =  `
+function last(array) {
+  console.log(array); // => [ [ 2.3, 3.4 ], [Function: floor] ]
+  const length = array == null ? 0 : array.length
+  return length ? array[length - 1] : undefined
+}
+function differenceBy(array, ...values) {
+  return last(values);
+}
+differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor);
+// => Math.floor
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DifferenceBy/>
+
+export const BaseDifference = () => {
+var code =  `
+function map(array, iteratee) {
+  let index = -1
+  const length = array == null ? 0 : array.length
+  const result = new Array(length)
+  while (++index < length) {
+    result[index] = iteratee(array[index], index, array)
+  }
+  return result
+}
+function baseDifference(values, iteratee) {
+  if (iteratee) {
+    values = map(values, (value) => iteratee(value))
+  }
+  return values
+}
+baseDifference([2.3, 3.4], Math.floor);
+// => [2, 3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<BaseDifference/>
