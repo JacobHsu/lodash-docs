@@ -1,0 +1,72 @@
+# `_.differenceWith()`
+
+This method is like `_.difference` except that it accepts comparator which is invoked to compare elements of array to values. The order and references of result values are determined by the first array. The comparator is invoked with two arguments: (arrVal, othVal).
+
+*Note*: Unlike `_.pullAllWith`, this method returns a new array.
+
+## Arguments
+`array (Array)`: The array to inspect.  
+`[values] (...Array)`: The values to exclude.  
+`[comparator] (Function)`: The comparator invoked per element.  
+
+## Returns
+`(Array)`: Returns the new array of filtered values.  
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var differenceWith = require("lodash/differenceWith");
+var isEqual = require("lodash/isEqual");
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+differenceWith(objects, [{ 'x': 1, 'y': 2 }], isEqual);
+// => [{ 'x': 2, 'y': 1 }]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const BaseDifference = () => {
+var code =  `
+var isEqual = require("lodash/isEqual");
+function arrayIncludesWith(array, target, comparator) {
+  if (array == null) {
+    return false
+  }
+  for (const value of array) {
+    if (comparator(target, value)) {
+      return true
+    }
+  }
+  return false
+}
+function baseDifference(array, values, comparator) {
+  if (comparator) {
+    includes = arrayIncludesWith
+  }
+  for (let value of array) {
+    const computed = value 
+    console.log(includes(values, computed, comparator)) 
+  }
+}
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+baseDifference(objects, [{ 'x': 1, 'y': 2 }], isEqual);
+// => true false
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<BaseDifference/>
+
