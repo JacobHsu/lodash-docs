@@ -1,0 +1,64 @@
+# `_.dropRight(array, [n=1])`
+
+Creates a slice of array with n elements dropped from the end.
+
+## Arguments
+`array (Array)`: The array to query.  
+`[n=1] (number)`: The number of elements to drop.
+
+## Returns
+`(Array)`: Returns the slice of array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var dropRight = require("lodash/dropRight");
+dropRight([1, 2, 3]);
+// => [1, 2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const Drop = () => {
+var code =  `
+function slice(array, start, end) {
+  let length = array == null ? 0 : array.length
+  if (!length) {
+    return []
+  }
+  length = start > end ? 0 : ((end - start) >>> 0)
+  let index = -1
+  const result = new Array(length)
+  while (++index < length) {
+    result[index] = array[index + start]
+  }
+  return result
+}
+function dropRight(array, n=1) {
+  const length = array == null ? 0 : array.length
+  n = length - n
+  return length
+    ? slice(array, 0, n)
+    : []
+}
+dropRight([1, 2, 3]);
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Drop/>
+
