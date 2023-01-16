@@ -1,0 +1,35 @@
+# `_.dropRightWhile()`
+
+Creates a slice of array excluding elements dropped from the end. Elements are dropped until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
+
+## Arguments
+`array (Array)`: The array to query.  
+`[predicate=_.identity] (Function)`: The function invoked per iteration.
+
+## Returns
+`(Array)`: Returns the slice of array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var dropRightWhile = require("lodash/dropRightWhile");
+var users = [
+  { 'user': 'barney',  'active': true },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'pebbles', 'active': false }
+];
+dropRightWhile(users, ['active', false]);
+// => objects for ['barney']
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
