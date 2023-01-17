@@ -13,6 +13,7 @@ This is a template for creating documentation with [Nextra](https://nextra.site)
 [RunKit Embed Component](https://github.com/runkitdev/react-runkit)  
 [RunKit + npm](https://npm.runkit.com/lodash)  
 [lodash](https://lodash.com/)  
+[lodashjs](https://www.lodashjs.com/)
 
 ## Note
 
