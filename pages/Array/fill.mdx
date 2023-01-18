@@ -1,0 +1,32 @@
+# `_.fill()`
+
+Fills elements of array with value from start up to, but not including, end.
+
+## Arguments
+`array (Array)`: The array to fill.  
+`value (*)`: The value to fill `array` with.  
+`[start=0] (number)`: The start position.  
+`[end=array.length] (number)`: The end position.  
+
+## Returns
+`(Array)`: Returns array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var fill = require("lodash/fill");
+fill(Array(3), 2);
+// => [2, 2, 2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
