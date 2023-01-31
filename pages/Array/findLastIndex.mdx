@@ -1,0 +1,35 @@
+# `_.findIndex()`
+
+This method is like `_.findIndex` except that it iterates over elements of collection from right to left.
+
+## Arguments
+`array (Array)`: The array to inspect.  
+`[predicate=_.identity] (Function)`: The function invoked per iteration.  
+`[fromIndex=array.length-1] (number)`: The index to search from.
+
+## Returns
+`(number)`: Returns the index of the found element, else -1.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var findLastIndex = require("lodash/findLastIndex");
+var users = [
+  { 'user': 'barney',  'active': true },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'pebbles', 'active': false }
+];
+findLastIndex(users, ['active', false]);
+// => 2
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
