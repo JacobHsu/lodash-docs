@@ -1,0 +1,29 @@
+# `_.flatten(array)`
+
+Flattens array a single level deep.
+
+## Arguments
+`array (Array)`: The array to flatten.
+
+## Returns
+`(Array)`: Returns the new flattened array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var flatten = require("lodash/flatten");
+flatten([1, [2, [3, [4]], 5]]);
+// => [1, 2, [3, [4]], 5]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
