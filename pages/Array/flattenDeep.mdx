@@ -1,0 +1,29 @@
+# `_.flattenDeep(array)`
+
+Recursively flattens array.
+
+## Arguments
+`array (Array)`: The array to flatten.
+
+## Returns
+`(Array)`: Returns the new flattened array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var flattenDeep = require("lodash/flattenDeep");
+flattenDeep([1, [2, [3, [4]], 5]]);
+// => [1, 2, 3, 4, 5]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
