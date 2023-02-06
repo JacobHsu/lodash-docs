@@ -1,0 +1,31 @@
+# `_.flattenDepth(array, [depth=1])`
+
+Recursively flatten array up to depth times.
+
+## Arguments
+`array (Array)`: The array to flatten.  
+`[depth=1] (number)`: The maximum recursion depth.  
+
+## Returns
+`(Array)`: Returns the new flattened array
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var flattenDepth = require("lodash/flattenDepth");
+var array = [1, [2, [3, [4]], 5]];
+flattenDepth(array, 2);
+// => [1, 2, 3, [4], 5]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
