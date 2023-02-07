@@ -1,0 +1,55 @@
+# `_.fromPairs(pairs)`
+
+The inverse of `_.toPairs`; this method returns an object composed from key-value pairs.
+
+## Arguments
+`pairs (Array)`: The key-value pairs.
+
+## Returns
+`(Object)`: Returns the new object.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var fromPairs = require("lodash/fromPairs");
+fromPairs([['a', 1], ['b', 2]]);
+// => { 'a': 1, 'b': 2 }
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const FromPairsDemo = () => {
+var code =  `
+function fromPairs(pairs) {
+  const result = {}
+  if (pairs == null) {
+    return result
+  }
+  for (const pair of pairs) {
+    result[pair[0]] = pair[1]
+  }
+  return result
+}
+fromPairs([['a', 1], ['b', 2]]);
+// => { 'a': 1, 'b': 2 }
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<FromPairsDemo/>
+
+
