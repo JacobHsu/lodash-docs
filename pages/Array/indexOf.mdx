@@ -1,0 +1,56 @@
+# `_.indexOf()`
+
+Gets the index at which the first occurrence of value is found in array using `SameValueZero` for equality comparisons. If fromIndex is negative, it's used as the offset from the end of array.
+
+## Arguments
+`array (Array)`: The array to inspect.  
+`value (*)`: The value to search for.  
+`[fromIndex=0] (number)`: The index to search from.  
+
+## Returns
+`(number)`: Returns the index of the matched value, else -1.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var indexOf = require("lodash/indexOf");
+indexOf([1, 2, 1, 2], 2);
+// => 1
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+function strictIndexOf(array, value, fromIndex) {
+  let index = fromIndex - 1
+  const { length } = array
+  while (++index < length) {
+    if (array[index] === value) {
+      return index
+    }
+  }
+  return -1
+}
+strictIndexOf([1, 2, 1, 2], 2, 0);
+// => 1
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
