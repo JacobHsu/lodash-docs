@@ -1,0 +1,58 @@
+# `_.initial(array)`
+
+Gets all but the last element of array.
+
+## Arguments
+`array (Array)`: The array to query.
+
+## Returns
+`(Array)`: Returns the slice of array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var initial = require("lodash/initial");
+initial([1, 2, 3]);
+// => [1, 2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+function slice(array, start, end) {
+  let length = array == null ? 0 : array.length
+  if (end < 0) {
+    end += length
+  }
+  console.log(end)
+  length = (end - start) >>> 0
+  let index = -1
+  const result = new Array(length)
+  while (++index < length) {
+    result[index] = array[index + start]
+  }
+  return result
+}
+slice([1, 2, 3], 0, -1)
+// => 1
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
