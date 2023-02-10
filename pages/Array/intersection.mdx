@@ -1,0 +1,28 @@
+# `_.intersection([arrays])`
+
+Creates an array of unique values that are included in all given arrays using `SameValueZero` for equality comparisons. The order and references of result values are determined by the first array.
+
+## Arguments
+`[arrays] (...Array)`: The arrays to inspect.
+
+## Returns
+`(Array)`: Returns the new array of intersecting values.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var intersection = require("lodash/intersection");
+intersection([2, 1], [2, 3]);
+// => [2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
