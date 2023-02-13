@@ -1,0 +1,29 @@
+# `_.intersectionBy()`
+
+This method is like `_.intersection` except that it accepts iteratee which is invoked for each element of each arrays to generate the criterion by which they're compared. The order and references of result values are determined by the first array. The iteratee is invoked with one argument:
+
+## Arguments
+`[arrays] (...Array)`: The arrays to inspect.  
+`[iteratee=_.identity] (Function)`: The iteratee invoked per element.
+
+## Returns
+`(Array)`: Returns the new array of intersecting values.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var intersectionBy = require("lodash/intersectionBy");
+intersectionBy([2.1, 1.2], [3.1, 2.3, 3.4], Math.floor);
+// => [2.1]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
