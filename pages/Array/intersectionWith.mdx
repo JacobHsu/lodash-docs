@@ -1,0 +1,32 @@
+# `_.intersectionWith()`
+
+This method is like `_.intersection` except that it accepts comparator which is invoked to compare elements of arrays. The order and references of result values are determined by the first array. The comparator is invoked with two arguments: (arrVal, othVal).
+
+## Arguments
+`[arrays] (...Array)`: The arrays to inspect.  
+`[comparator] (Function)`: The comparator invoked per element.
+
+## Returns
+`(Array)`: Returns the new array of intersecting values.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var intersectionWith = require("lodash/intersectionWith");
+var isEqual = require("lodash/isEqual")
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+intersectionWith(objects, others, isEqual);
+// => [{ 'x': 1, 'y': 2 }]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
