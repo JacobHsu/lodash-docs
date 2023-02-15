@@ -1,0 +1,44 @@
+# `_.join(array, [separator=','])`
+
+Converts all elements in array into a string separated by separator.
+
+## Arguments
+`array (Array)`: The array to convert.  
+`[separator=','] (string)`: The element separator.
+
+## Returns
+`(string)`: Returns the joined string.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var join = require("lodash/join");
+join(['a', 'b', 'c'], '~');
+// => 'a~b~c'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemoMDN = () => {
+var code =  `
+['a', 'b', 'c'].join('~')
+// => 'a~b~c'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemoMDN/>
