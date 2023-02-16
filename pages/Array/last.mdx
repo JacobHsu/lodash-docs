@@ -1,0 +1,46 @@
+# `_.last(array)`
+
+Gets the last element of array.
+
+## Arguments
+`array (Array)`: The array to query.
+
+## Returns
+`(*)`: Returns the last element of array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var last = require("lodash/last");
+last([1, 2, 3]);
+// => 3
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function last(array) {
+  const length = array == null ? 0 : array.length
+  return length ? array[length - 1] : undefined
+}
+last([1, 2, 3]);
+// => 3
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
