@@ -1,0 +1,49 @@
+# `_.lastIndexOf()`
+
+This method is like `_.indexOf` except that it iterates over elements of array from right to left.
+
+## Arguments
+`array (Array)`: The array to inspect.  
+`value (*)`: The value to search for.   
+`[fromIndex=array.length-1] (number)`: The index to search from.
+
+## Returns
+`(number)`: Returns the index of the matched value, else -1.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var lastIndexOf = require("lodash/lastIndexOf");
+lastIndexOf([1, 2, 1, 2], 2);
+// => 3
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function strictLastIndexOf(array, value) {
+  const length = array == null ? 0 : array.length
+  let index = length
+  return Math.min(index, length - 1)
+}
+strictLastIndexOf([1, 2, 1, 2], 2);
+// => 3
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
