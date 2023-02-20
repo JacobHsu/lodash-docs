@@ -1,0 +1,54 @@
+# `_.nth(array, [n=0])`
+
+Gets the element at index n of array. If n is negative, the nth element from the end is returned.
+
+## Arguments
+`array (Array)`: The array to query.  
+`[n=0] (number)`: The index of the element to return.
+
+## Returns
+`(*)`: Returns the nth element of array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var nth = require("lodash/nth");
+var array = ['a', 'b', 'c', 'd'];
+nth(array, 1);
+// => 'b'
+nth(array, -2);
+// => 'c';
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function nth(array, n) {
+  const length = array == null ? 0 : array.length
+  if (!length) {
+    return
+  }
+  n += n < 0 ? length : 0
+  return array[n]
+}
+nth(['a', 'b', 'c', 'd'], -2);
+// => 'c';
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
