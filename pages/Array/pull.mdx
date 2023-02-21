@@ -1,0 +1,50 @@
+# `_.pull(array, [values])`
+
+Removes all given values from array using `SameValueZero` for equality comparisons.
+
+Note: Unlike `_.without`, this method mutates array. Use `_.remove` to remove elements from an array by predicate.
+
+## Arguments
+`array (Array)`: The array to modify.  
+`[values] (...*)`: The values to remove.
+
+## Returns
+`(Array)`: Returns array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var pull = require("lodash/pull");
+var array = ['a', 'b', 'c', 'a', 'b', 'c'];
+pull(array, 'a', 'c');
+console.log(array);
+// => ['b', 'b']
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `let fromIndex = 0
+var array = ['a', 'b', 'c', 'a', 'b', 'c'];
+array.splice(fromIndex, 1)
+console.log(array)
+// => ["b", "c", "a", "b", "c"]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
