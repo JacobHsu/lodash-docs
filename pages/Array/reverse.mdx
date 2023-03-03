@@ -1,0 +1,46 @@
+# `_.reverse(array)`
+
+Reverses array so that the first element becomes the last, the second element becomes the second to last, and so on.
+
+**Note**: This method mutates array and is based on [`Array#reverse.`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse)
+
+## Arguments
+`array (Array)`: The array to modify.  
+
+## Returns
+`(Array)`: Returns array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var reverse = require("lodash/reverse");
+var array = [1, 2, 3];
+reverse(array);
+// => [3, 2, 1]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var array = [1, 2, 3];
+const reversed = array.reverse();
+console.log(reversed);
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
