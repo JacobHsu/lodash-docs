@@ -1,0 +1,69 @@
+# `_.sortedIndex(array, value)`
+
+Uses a binary search to determine the lowest index at which value should be inserted into array in order to maintain its sort order.
+
+## Arguments
+`array (Array)`: The sorted array to inspect.  
+`value (*)`: The value to evaluate.
+
+## Returns
+`(number)`: Returns the index at which value should be inserted into array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var sortedIndex = require("lodash/sortedIndex");
+sortedIndex([30, 50], 40);
+// => 1
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function baseSortedIndex(array, value) {
+let low = 0;
+let high = array == null ? low : array.length;
+const mid = (low + high) >>> 1;
+const computed = array[mid]
+console.log(low, high, mid, computed); 
+}
+baseSortedIndex([30, 50], 40);
+// => 0 2 1 50
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+無符號右移算符（`>>>`）
+
+export const Deep2Demo = () => {
+var code =  `const decimal = 12; // 12的二进制表示为1100
+const binary = decimal.toString(2); // "1100"
+const shifted = decimal >>> 2; // 0011，即3的二进制表示
+// => 3
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Deep2Demo/>
+
+
