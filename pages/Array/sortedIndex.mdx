@@ -29,12 +29,15 @@ sortedIndex([30, 50], 40);
 
 ## Deep
 
+`mid = (low + high) >>> 1;`   
+二分查找 使用無符號右移運算符（>>>）將結果除以2並向下取整
+
 export const DeepDemo = () => {
 var code =  `function baseSortedIndex(array, value) {
-let low = 0;
-let high = array == null ? low : array.length;
+let low = 0;  ? low : array.length;
+let high = array == null ? low : array.length
 const mid = (low + high) >>> 1;
-const computed = array[mid]
+const computed = array[mid];
 console.log(low, high, mid, computed); 
 }
 baseSortedIndex([30, 50], 40);
