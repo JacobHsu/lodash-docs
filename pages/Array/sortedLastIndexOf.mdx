@@ -1,0 +1,53 @@
+# `_.sortedLastIndexOf(array, value)`
+
+
+This method is like `_.lastIndexOf` except that it performs a binary search on a sorted array.
+
+## Arguments
+`array (Array)`: The array to inspect.  
+`value (*)`: The value to search for.
+
+## Returns
+`(number)`: Returns the index of the matched value, else -1.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var sortedLastIndexOf = require("lodash/sortedLastIndexOf");
+sortedLastIndexOf([4, 5, 5, 5, 6], 5);
+// => 3
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function baseSortedIndex(array, value) {
+let low = 0
+let high = array == null ? 0 : array.length
+const mid = (low + high) >>> 1;
+const computed = array[mid]
+console.log(low, high, mid, computed); 
+}
+baseSortedIndex([4, 5, 5, 5, 6], 5);
+// => 0 5 2 5
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
