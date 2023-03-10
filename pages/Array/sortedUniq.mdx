@@ -1,0 +1,46 @@
+# `_.sortedUniq(array)`
+
+This method is like `_.uniq` except that it's designed and optimized for sorted arrays.
+
+## Arguments
+`array (Array)`: The array to inspect.
+
+## Returns
+`(Array)`: Returns the new duplicate free array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var sortedUniq = require("lodash/sortedUniq");
+sortedUniq([1, 1, 2]);
+// => [1, 2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function sortedUniq(array) {}
+function eq(value, other) {
+  return value === other || (value !== value && other !== other)
+}
+eq(2, 2)
+// => true
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
