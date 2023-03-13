@@ -1,0 +1,47 @@
+# `_.sortedUniqBy(array, [iteratee])`
+
+This method is like `_.uniqBy` except that it's designed and optimized for sorted arrays.
+
+## Arguments
+`array (Array)`: The array to inspect.  
+`[iteratee] (Function)`: The iteratee invoked per element.
+
+## Returns
+`(Array)`: Returns the new duplicate free array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var sortedUniqBy = require("lodash/sortedUniqBy");
+sortedUniqBy([1.1, 1.2, 2.3, 2.4], Math.floor);
+// => [1.1, 2.3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function baseSortedUniq(array, iteratee) {}
+function eq(value, other) {
+  return value === other || (value !== value && other !== other)
+}
+eq(Math.floor(1.1), Math.floor(1.2))
+// => true
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
