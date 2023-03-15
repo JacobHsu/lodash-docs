@@ -1,0 +1,50 @@
+# `_.tail(array)`
+
+Gets all but the first element of array..
+
+## Arguments
+`array (Array)`: The array to query.
+
+## Returns
+`(Array)`: Returns the slice of array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var tail = require("lodash/tail");
+tail([1, 2, 3]);
+// => [2, 3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function tail(array) {
+  const length = array == null ? 0 : array.length
+  if (!length) {
+    return []
+  }
+  const [, ...result] = array
+  return result
+}
+tail([1, 2, 3]);
+// => [2, 3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
