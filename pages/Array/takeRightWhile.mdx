@@ -1,0 +1,58 @@
+# `_.takeRightWhile()`
+
+Creates a slice of array with elements taken from the end. Elements are taken until predicate returns falsey. The predicate is invoked with three arguments: (value, index, array).
+
+## Arguments
+`array (Array)`: The array to query.  
+`[predicate=_.identity] (Function)`: The function invoked per iteration.
+
+## Returns
+`(Array)`: Returns the slice of array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var takeRightWhile = require("lodash/takeRightWhile");
+var users = [
+  { 'user': 'barney',  'active': true },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'pebbles', 'active': false }
+];
+takeRightWhile(users, function(o) { return !o.active; });
+// => objects for ['fred', 'pebbles']
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function baseWhile(array, predicate) {
+console.log(array[1]) // Object {user: "fred", active: false}
+const res = predicate(array[1]); // true
+console.log(res)
+}
+var users = [
+  { 'user': 'barney',  'active': true },
+  { 'user': 'fred',    'active': false },
+  { 'user': 'pebbles', 'active': false }
+];
+baseWhile(users, function(o) { return !o.active; });
+// => [2, 1 empty]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
