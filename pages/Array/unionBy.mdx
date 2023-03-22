@@ -1,0 +1,46 @@
+# `_.unionBy()`
+
+`_.unionBy([arrays], [iteratee=_.identity])`  
+This method is like _.union except that it accepts iteratee which is invoked for each element of each arrays to generate the criterion by which uniqueness is computed. Result values are chosen from the first array in which the value occurs. The iteratee is invoked with one argument:
+(value).
+
+## Arguments
+`[arrays] (...Array)`: The arrays to inspect.  
+`[iteratee=_.identity] (Function)`: The iteratee invoked per element.
+
+## Returns
+`(Array)`: Returns the new array of combined values.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var unionBy = require("lodash/unionBy");
+unionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+// => [{ 'x': 1 }, { 'x': 2 }]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function uniqBy(array, iteratee) {
+  // return (array != null && array.length) ? baseUniq(array, iteratee) : []
+}
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
