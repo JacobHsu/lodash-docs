@@ -1,0 +1,46 @@
+# `_.uniq(array)`
+
+Creates a duplicate-free version of an array, using `SameValueZero` for equality comparisons, in which only the first occurrence of each element is kept. The order of result values is determined by the order they occur in the array.
+
+## Arguments
+`[arrays] (...Array)`: The arrays to inspect.
+
+## Returns
+`(Array)`: Returns the slice of array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var union = require("lodash/union");
+union([2], [1, 2]);
+// => [2, 1]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function union(...arrays) {
+  // return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true))
+}
+const set1 = new Set([1, 2, 3, 4, 5]);
+console.log(set1.has(1));
+// Expected output: true
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>

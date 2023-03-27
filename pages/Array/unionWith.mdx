@@ -1,0 +1,50 @@
+# `_.unionWith()`
+
+`_.unionWith([arrays], [comparator])`  
+This method is like _.union except that it accepts comparator which is invoked to compare elements of arrays. Result values are chosen from the first array in which the value occurs. The comparator is invoked with two arguments: (arrVal, othVal).
+
+## Arguments
+`[arrays] (...Array)`: The arrays to inspect. 
+`[comparator] (Function)`: The comparator invoked per element.
+
+## Returns
+`(Array)`: Returns the new array of combined values.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var unionWith = require("lodash/unionWith");
+var isEqual = require("lodash/isEqual");
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+unionWith(objects, others, isEqual);
+// => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function unionWith(...arrays) {
+  let comparator = last(arrays)
+  comparator = typeof comparator === 'function' ? comparator : undefined
+  return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), undefined, comparator)
+}
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
