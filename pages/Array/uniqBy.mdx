@@ -1,0 +1,53 @@
+# `_.uniqBy()`
+
+`_.uniqBy(array, [iteratee=_.identity])`  
+This method is like `_.uniq` except that it accepts iteratee which is invoked for each element in array to generate the criterion by which uniqueness is computed. The order of result values is determined by the order they occur in the array. The iteratee is invoked with one argument:
+
+## Arguments
+`[arrays] (...Array)`: The arrays to inspect.  
+`[iteratee=_.identity] (Function)`: The iteratee invoked per element.
+
+## Returns
+`(Array)`: Returns the new duplicate free array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var uniqBy = require("lodash/uniqBy");
+uniqBy([2.1, 1.2, 2.3], Math.floor);
+// => [2.1, 1.2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function unionBy(...arrays) {
+  console.log(arrays) // [[2.1, 1.2, 2.3], function()]
+  let iteratee = arrays[arrays.length - 1]; // last(arrays)
+  console.log(iteratee) // function floor()
+  // if (isArrayLikeObject(iteratee)) {
+  //   iteratee = undefined
+  // }
+  // return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), iteratee)
+}
+unionBy([2.1, 1.2, 2.3], Math.floor);
+// => [2.1, 1.2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
