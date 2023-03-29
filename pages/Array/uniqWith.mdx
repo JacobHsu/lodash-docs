@@ -1,0 +1,54 @@
+# `_.uniqWith(array, [comparator])`
+
+This method is like `_.uniq` except that it accepts comparator which is invoked to compare elements of array. The order of result values is determined by the order they occur in the array.The comparator is invoked with two arguments: (arrVal, othVal).
+
+## Arguments
+`[arrays] (...Array)`: The array to inspect.  
+`[comparator] (Function)`: The comparator invoked per element.
+
+## Returns
+`(Array)`: Returns the new duplicate free array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var uniqWith = require("lodash/uniqWith");
+var isEqual = require("lodash/isEqual");
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 2 }];
+uniqWith(objects, isEqual);
+// => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function unionWith(...arrays) {
+  console.log(arrays) // [[Object {x: 1, y: 2}, Object {x: 2, y: 1}, Object {x: 1, y: 2}], function()]
+  let comparator = arrays[arrays.length - 1]; // last(arrays)
+  console.log(comparator) // function isEqual()
+  // comparator = typeof comparator === 'function' ? comparator : undefined
+  // return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), undefined, comparator)
+}
+var isEqual = require("lodash/isEqual");
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 2 }];
+unionWith(objects, isEqual);
+// => [2.1, 1.2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
