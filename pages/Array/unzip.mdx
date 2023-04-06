@@ -1,0 +1,66 @@
+# `_.unzip(array)`
+
+This method is like `_.zip` except that it accepts an array of grouped elements and creates an array regrouping the elements to their pre-zip configuration.
+
+## Arguments
+`array (Array)`: The array of grouped elements to process.
+
+## Returns
+`(Array)`: Returns the new array of regrouped elements.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var zip = require("lodash/zip");
+var unzip = require("lodash/unzip");
+var zipped = zip(['a', 'b'], [1, 2], [true, false]);
+// => [['a', 1, true], ['b', 2, false]]
+unzip(zipped);
+// => [['a', 'b'], [1, 2], [true, false]]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function union(...arrays) {
+  // return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true))
+}
+const set1 = new Set([1, 2, 3, 4, 5]);
+console.log(set1.has(1));
+// Expected output: truefunction unzip(array) {
+  if (!(array != null && array.length)) {
+    return []
+  }
+  let length = 0
+  array = filter(array, (group) => {
+    if (isArrayLikeObject(group)) {
+      length = Math.max(group.length, length)
+      return true
+    }
+  })
+  let index = -1
+  const result = new Array(length)
+  while (++index < length) {
+    result[index] = map(array, baseProperty(index))
+  }
+  return result
+}
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
