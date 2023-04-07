@@ -1,11 +1,16 @@
-# `_.unzip(array)`
+# `_.unzipWith()`
 
-This method is like `_.zip` except that it accepts an array of grouped elements and creates an array regrouping the elements to their pre-zip configuration.
+`_.unzipWith(array, [iteratee=_.identity])`
+
+This method is like `_.unzip` except that it accepts iteratee to specify how regrouped values should be combined. The iteratee is invoked with the elements of each group: (...group).
 
 ## Arguments
+
 `array (Array)`: The array of grouped elements to process.
+`[iteratee=_.identity] (Function)`: The function to combine regrouped values.
 
 ## Returns
+
 `(Array)`: Returns the new array of regrouped elements.
 
 ## Example
@@ -14,11 +19,12 @@ import Embed from 'runkit-embed-react';
 
 export const Demo = () => {
 var code =  `var zip = require("lodash/zip");
-var unzip = require("lodash/unzip");
-var zipped = zip(['a', 'b'], [1, 2], [true, false]);
-// => [['a', 1, true], ['b', 2, false]]
-unzip(zipped);
-// => [['a', 'b'], [1, 2], [true, false]]
+var unzipWith = require("lodash/unzipWith");
+var add = require("lodash/add");
+var zipped = zip([1, 2], [10, 20], [100, 200]);
+// => [[1, 10, 100], [2, 20, 200]]
+unzipWith(zipped, add);
+// => [3, 30, 300]
 `   
   return (
     <div>
@@ -32,7 +38,16 @@ unzip(zipped);
 ## Deep
 
 export const DeepDemo = () => {
-var code =  `function unzip(array) {
+var code =  `function unzipWith(array, iteratee) {
+  if (!(array != null && array.length)) {
+    return []
+  }
+  const result = unzip(array)
+  return map(result, (group) => iteratee.apply(undefined, group))
+}
+// => [[1, 10, 100], [2, 20, 200]]
+// => [[1, 2], [10, 20], [100, 200]]
+function unzip(array) {
   if (!(array != null && array.length)) {
     return []
   }
@@ -50,6 +65,7 @@ var code =  `function unzip(array) {
   }
   return result
 }
+// => [3, 30, 300]
 `   
   return (
     <div>
