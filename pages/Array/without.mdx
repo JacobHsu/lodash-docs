@@ -1,0 +1,72 @@
+# `_.without(array, [values])`
+
+Creates an array excluding all given values using `SameValueZero` for equality comparisons.
+
+**Note**: Unlike `_.pull`, this method returns a new array.
+
+## Arguments
+`array (Array)`: The array to inspect.  
+`[values] (...*)`: The values to exclude.
+
+## Returns
+`(Array)`: Returns the new array of filtered values.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var without = require("lodash/without");
+without([2, 1, 2, 3], 1, 2);
+// => [3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function without(array, ...values) {
+  // return isArrayLikeObject(array) ? baseDifference(array, values) : []
+  console.log(values) // rest parameter => [1, 2]
+  return baseDifference(array, values)
+}
+function baseDifference(array, values) {
+  const result = []
+  const valuesLength = values.length
+  if (!array.length) {
+    return result
+  }
+  outer:
+  for (let value of array) {
+    // console.log(value) // 2 1 2 3
+    if (value === value) {
+      let valuesIndex = valuesLength
+      while (valuesIndex--) {
+        // console.log(values[valuesIndex]) // 2 1 2 1  value: 2 1 2 3
+        if (values[valuesIndex] === value) {
+          continue outer
+        }
+      }
+      result.push(value)
+    }
+  }
+  return result
+}
+without([2, 1, 2, 3], 1, 2);
+// => [3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
