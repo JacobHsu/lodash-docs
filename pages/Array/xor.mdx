@@ -1,0 +1,70 @@
+# `_.xor([arrays])`
+
+Creates an array of unique values that is the `symmetric difference` of the given arrays. The order of result values is determined by the order they occur in the arrays.
+
+## Arguments
+`[arrays] (...Array)`: The arrays to inspect.
+
+## Returns
+`(Array)`: Returns the new array of filtered values.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var xor = require("lodash/xor");
+xor([2, 1], [2, 3]);
+// => [1, 3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function xor(...arrays) {
+  // return baseXor(arrays.filter(isArrayLikeObject))
+  return baseXor(arrays.filter(isArrayLike))
+}
+function isArrayLike(value) {
+  return value != null && typeof value !== 'function' //  && isLength(value.length)
+}
+function baseXor(arrays, iteratee, comparator) {
+  console.log(arrays); // [ [ 2, 1 ], [ 2, 3 ] ]
+  const length = arrays.length
+  if (length < 2) {
+    return length ? baseUniq(arrays[0]) : []
+  }
+  let index = -1
+  const result = new Array(length)
+
+  while (++index < length) {
+    const array = arrays[index]
+    let othIndex = -1
+
+    while (++othIndex < length) {
+      if (othIndex != index) {
+        result[index] = baseDifference(result[index] || array, arrays[othIndex], iteratee, comparator)
+      }
+    }
+  }
+  return baseUniq(baseFlatten(result, 1), iteratee, comparator)
+}
+xor([2, 1], [2, 3]);
+// => [1, 3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
