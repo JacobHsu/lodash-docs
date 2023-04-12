@@ -1,0 +1,76 @@
+# `_.xorBy()`
+
+ `_.xorBy([arrays], [iteratee=_.identity])`
+
+This method is like `_.xor` except that it accepts iteratee which is invoked for each element of each arrays to generate the criterion by which by which they're compared. The order of result values is determined by the order they occur in the arrays. The iteratee is invoked with one argument: (value).
+
+## Arguments
+`[arrays] (...Array)`: The arrays to inspect.  
+`[iteratee=_.identity] (Function)`: The iteratee invoked per element.
+
+## Returns
+`(Array)`: Returns the new array of filtered values.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var xorBy = require("lodash/xorBy");
+xorBy([2.1, 1.2], [2.3, 3.4], Math.floor);
+// => [1.2, 3.4]
+// xorBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');
+// => [{ 'x': 2 }]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function xorBy(...arrays) {
+  let iteratee = arrays[arrays.length - 1] // last(arrays)
+  // return baseXor(arrays.filter(isArrayLikeObject), iteratee)
+  return baseXor(arrays.filter(isArrayLike), iteratee)
+}
+function isArrayLike(value) {
+  return value != null && typeof value !== 'function' //  && isLength(value.length)
+}
+function baseXor(arrays, iteratee, comparator) {
+  console.log(arrays); // [ [ 2, 1 ], [ 2, 3 ] ]
+  const length = arrays.length
+  if (length < 2) {
+    return length ? baseUniq(arrays[0]) : []
+  }
+  let index = -1
+  const result = new Array(length)
+
+  while (++index < length) {
+    const array = arrays[index]
+    let othIndex = -1
+
+    while (++othIndex < length) {
+      if (othIndex != index) {
+        result[index] = baseDifference(result[index] || array, arrays[othIndex], iteratee, comparator)
+      }
+    }
+  }
+  return baseUniq(baseFlatten(result, 1), iteratee, comparator)
+}
+xorBy([2, 1], [2, 3]);
+// => [1, 3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
