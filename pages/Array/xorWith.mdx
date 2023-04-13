@@ -1,0 +1,81 @@
+# `_.xorWith()`
+
+ `_.xorWith([arrays], [comparator])`
+
+This method is like `_.xor` except that it accepts comparator which is invoked to compare elements of arrays. The order of result values is determined by the order they occur in the arrays. The comparator is invoked with two arguments: (arrVal, othVal).
+
+## Arguments
+`[arrays] (...Array)`: The arrays to inspect.  
+`[comparator] (Function)`: The comparator invoked per element.
+
+## Returns
+`(Array)`: Returns the new array of filtered values.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var xorWith = require("lodash/xorWith");
+var isEqual = require("lodash/isEqual");
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+xorWith(objects, others, isEqual);
+// => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function xorWith(...arrays) {
+  let comparator = arrays[arrays.length - 1] // last(arrays)
+  comparator = typeof comparator === 'function' ? comparator : undefined
+  // return baseXor(arrays.filter(isArrayLikeObject), undefined, comparator)
+  return baseXor(arrays.filter(isArrayLike), undefined, comparator)
+}
+function isArrayLike(value) {
+  return value != null && typeof value !== 'function' //  && isLength(value.length)
+}
+function baseXor(arrays, iteratee, comparator) {
+  console.log(arrays); // [ [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }], { 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }] ]
+  const length = arrays.length
+  if (length < 2) {
+    return length ? baseUniq(arrays[0]) : []
+  }
+  let index = -1
+  const result = new Array(length)
+
+  while (++index < length) {
+    const array = arrays[index]
+    let othIndex = -1
+
+    while (++othIndex < length) {
+      if (othIndex != index) {
+        result[index] = baseDifference(result[index] || array, arrays[othIndex], iteratee, comparator)
+      }
+    }
+  }
+  return baseUniq(baseFlatten(result, 1), iteratee, comparator)
+}
+var isEqual = require("lodash/isEqual");
+var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
+var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
+xorWith(objects, others, isEqual);
+// => [{ 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
