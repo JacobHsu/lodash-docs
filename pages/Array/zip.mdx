@@ -1,0 +1,63 @@
+# `_.zip([arrays])`
+
+Creates an array of grouped elements, the first of which contains the first elements of the given arrays, the second of which contains the second elements of the given arrays, and so on.
+
+## Arguments
+`[arrays] (...Array)`: The arrays to process.
+
+## Returns
+`(Array)`: Returns the new array of grouped elements.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var zip = require("lodash/zip");
+zip(['a', 'b'], [1, 2], [true, false]);
+// => [['a', 1, true], ['b', 2, false]]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function unzip(array) {
+  if (!(array != null && array.length)) {
+    return []
+  }
+  let length = 0
+  array = filter(array, (group) => {
+    if (isArrayLikeObject(group)) {
+      length = Math.max(group.length, length)
+      return true
+    }
+  })
+  let index = -1
+  const result = new Array(length)
+  while (++index < length) {
+    result[index] = map(array, baseProperty(index))
+  }
+  return result
+}
+function zip(...arrays) {
+  // console.log(arrays) // [["a", "b"], [1, 2], [true, false]]
+  return unzip(arrays) 
+}
+zip(['a', 'b'], [1, 2], [true, false]);
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
