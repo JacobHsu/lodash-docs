@@ -1,0 +1,49 @@
+# `_.zipObjectDeep([])`
+
+`_.zipObjectDeep([props=[]], [values=[]])`
+
+This method is like `_.zipObject` except that it supports property paths.
+
+## Arguments
+`[props=[]] (Array)`: The property identifiers.
+`[values=[]] (Array)`: The property values.
+
+## Returns
+`(Object)`: Returns the new object.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var zipObjectDeep = require("lodash/zipObjectDeep");
+zipObjectDeep(['a.b[0].c', 'a.b[1].d'], [1, 2]);
+// => { 'a': { 'b': [{ 'c': 1 }, { 'd': 2 }] } }
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+function zipObjectDeep(props, values) {
+  return baseZipObject(props || [], values || [], baseSet)
+}
+zipObjectDeep(['a.b[0].c', 'a.b[1].d'], [1, 2]);
+// => { 'a': { 'b': [{ 'c': 1 }, { 'd': 2 }] } }
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
