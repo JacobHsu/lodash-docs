@@ -1,0 +1,62 @@
+# `_.zipWith([])`
+
+`_.zipWith([arrays], [iteratee=_.identity])`
+
+This method is like `_.zip` except that it accepts iteratee to specify how grouped values should be combined. The iteratee is invoked with the elements of each group: (...group).
+
+## Arguments
+`[arrays] (...Array)`: The arrays to process.  
+`[iteratee=_.identity] (Function)`: The function to combine grouped values.
+
+## Returns
+`(Array)`: Returns the new array of grouped elements.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var zipWith = require("lodash/zipWith");
+zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) {
+  return a + b + c;
+});
+// => [111, 222]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function unzipWith(array, iteratee) {
+  if (!(array != null && array.length)) {
+    return []
+  }
+  const result = unzip(array)
+  return map(result, (group) => iteratee.apply(undefined, group))
+}
+function zipWith(...arrays) {
+  const length = arrays.length
+  let iteratee = length > 1 ? arrays[length - 1] : undefined
+  iteratee = typeof iteratee === 'function' ? (arrays.pop(), iteratee) : undefined
+  return unzipWith(arrays, iteratee)
+}
+zipWith([1, 2], [10, 20], [100, 200], function(a, b, c) {
+  return a + b + c;
+});
+// => [111, 222]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
