@@ -1,0 +1,58 @@
+# `_.forEach()`
+
+`_.forEach(collection, [iteratee=_.identity])`
+
+Iterates over elements of collection and invokes iteratee for each element. The iteratee is invoked with three arguments: (value, index|key, collection). Iteratee functions may exit iteration early by explicitly returning false.
+
+**Note**: As with other "Collections" methods, objects with a "length" property are iterated like arrays. To avoid this behavior use `_.forIn` or `_.forOwn` for object iteration.
+
+## Arguments
+`collection (Array|Object)`: The collection to iterate over.  
+`[iteratee=_.identity] (Function)`: The function invoked per iteration.
+
+## Returns
+`(*)`: Returns collection.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var forEach = require("lodash/forEach");
+forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+  console.log(key);
+});
+// => Logs 'a' then 'b' (iteration order is not guaranteed).
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const Difference = () => {
+var code =  `function forEach(collection, iteratee) {
+  const func = Array.isArray(collection) ? arrayEach : baseEach
+  return func(collection, iteratee)
+}
+forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+  console.log(key);
+});
+// => baseEach Logs 'a' then 'b' (iteration order is not guaranteed).
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Difference/>
+
+
+
