@@ -1,0 +1,58 @@
+# `_.every()`
+
+`_.every(collection, [predicate=_.identity])`
+
+Checks if predicate returns truthy for **all** elements of collection. Iteration is stopped once predicate returns falsey. The predicate is invoked with three arguments: (value, index|key, collection).
+
+**Note**: This method returns true for `empty collections` because `everything is true` of elements of empty collections.
+
+## Arguments
+`collection (Array|Object)`: The collection to iterate over.  
+`[iteratee=_.identity] (Function)`:  The function invoked per iteration.
+
+## Returns
+`(boolean)`: Returns true if all elements pass the predicate check, else false.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var every = require("lodash/every");
+every([true, 1, null, 'yes'], Boolean);
+// => false
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function every(array, predicate) {
+  let index = -1
+  const length = array == null ? 0 : array.length
+
+  while (++index < length) {
+    if (!predicate(array[index], index, array)) {
+      return false
+    }
+  }
+  return true
+}
+every([true, 1, null, 'yes'], Boolean);
+// => false
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
