@@ -1,0 +1,79 @@
+# `_.filter()`
+
+`_.filter(collection, [predicate=_.identity])`
+
+Iterates over elements of collection, returning an array of all elements predicate returns truthy for. The predicate is invoked with three arguments: (value, index|key, collection).
+
+**Note**: Unlike `_.remove`, this method returns a new array.
+
+## Arguments
+`collection (Array|Object)`: The collection to iterate over.   
+`[iteratee=_.identity] (Function)`: The function invoked per iteration.
+
+## Returns
+`(Array)`: Returns the new filtered array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var filter = require("lodash/filter");
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': true },
+  { 'user': 'fred',   'age': 40, 'active': false }
+];
+filter(users, function(o) { return !o.active; });
+// => objects for ['fred']
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const Difference = () => {
+var code =  `function filter(array, predicate) {
+  let index = -1
+  let resIndex = 0
+  const length = array == null ? 0 : array.length
+  const result = []
+
+  while (++index < length) {
+    const value = array[index]
+    if (predicate(value, index, array)) {
+      result[resIndex++] = value
+    }
+  }
+  return result
+}
+
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': true },
+  { 'user': 'fred',   'age': 40, 'active': false }
+];
+filter(users, function(o) { return !o.active; });
+// => objects for ['fred']
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Difference/>
+
+
+在 JavaScript 中，predicate（謂詞）是一個函數，用於在給定的條件下對一個值進行判斷。在某些 JavaScript 方法中，如 Array.prototype.filter()、Array.prototype.every() 和 Array.prototype.some()，這些方法接受一個 predicate 函數作為參數。
+
+在這些方法中，predicate 函數通常可以接受三個參數：value（當前被處理的陣列元素的值）、index（當前被處理的陣列元素的索引）和array（正在被操作的陣列）。這種設計是為了提供更多的靈活性和功能性。
+
+
+
+
