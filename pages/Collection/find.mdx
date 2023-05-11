@@ -1,0 +1,58 @@
+# `_.find()`
+
+`_.find(collection, [predicate=_.identity], [fromIndex=0])`
+
+Iterates over elements of collection, returning the first element predicate returns truthy for. The predicate is invoked with three arguments: (value, index|key, collection).
+
+## Arguments
+`collection (Array|Object)`: The collection to inspect.
+`[iteratee=_.identity] (Function)`:  The function invoked per iteration.  
+`[fromIndex=0] (number)`: The index to search from.
+
+## Returns
+`(*)`: Returns the matched element, else undefined.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var find = require("lodash/find");
+var users = [
+  { 'user': 'barney',  'age': 36, 'active': true },
+  { 'user': 'fred',    'age': 40, 'active': false },
+  { 'user': 'pebbles', 'age': 1,  'active': true }
+];
+
+find(users, function(o) { return o.age < 40; });
+// => object for 'barney'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var users = [
+  { 'user': 'barney',  'age': 36, 'active': true },
+  { 'user': 'fred',    'age': 40, 'active': false },
+  { 'user': 'pebbles', 'age': 1,  'active': true }
+];
+const found = users.find(function(o) { return o.age < 40; });
+
+console.log(found);
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
