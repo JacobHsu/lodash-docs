@@ -1,0 +1,63 @@
+# `_.findLast()`
+
+`_.findLast(collection, [predicate=_.identity], [fromIndex=collection.length-1])`
+
+This method is like `_.find` except that it iterates over elements of collection from right to left.
+
+## Arguments
+
+`collection (Array|Object)`: The collection to inspect.
+`[iteratee=_.identity] (Function)`: The function invoked per iteration.  
+`[fromIndex=collection.length-1] (number)`: The index to search from.
+
+## Returns
+
+`(*)`: Returns the matched element, else undefined.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var findLast = require("lodash/findLast");
+findLast([1, 2, 3, 4], function(n) {
+  return n % 2 == 1;
+});
+// => 3
+`  
+ return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function findLast(collection, predicate, fromIndex) {
+  let iteratee
+  const iterable = Object(collection)
+  if (!isArrayLike(collection)) {
+    collection = Object.keys(collection)
+    iteratee = predicate
+    predicate = (key) => iteratee(iterable[key], key, iterable)
+  }
+  const index = findLastIndex(collection, predicate, fromIndex)
+  return index > -1 ? iterable[iteratee ? collection[index] : index] : undefined
+}
+findLast([1, 2, 3, 4], function(n) {
+  return n % 2 == 1;
+});
+// => 3
+`  
+ return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
