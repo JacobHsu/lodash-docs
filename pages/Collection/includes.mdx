@@ -1,0 +1,51 @@
+# `_.includes()`
+
+`_.includes(collection, value, [fromIndex=0])`
+
+Checks if value is in collection. If collection is a string, it's checked for a substring of value, otherwise SameValueZero is used for equality comparisons. If fromIndex is negative, it's used as the offset from the end of collection.
+
+## Arguments
+`collection (Array|Object)`: The collection to inspect.  
+`value (*)`: The value to search for.  
+`[fromIndex=0] (number)`: The index to search from.
+
+## Returns
+`(boolean)`: Returns true if value is found, else false.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var includes = require("lodash/includes");
+includes({ 'a': 1, 'b': 2 }, 1);
+// => true
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `const array1 = [1, 2, 3];
+
+console.log(array1.includes(2));
+// Expected output: true
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
