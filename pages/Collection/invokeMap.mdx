@@ -1,0 +1,67 @@
+# `_.invokeMap()`
+
+`_.invokeMap(collection, path, [args])`
+
+Invokes the method at path of each element in collection, returning an array of the results of each invoked method. Any additional arguments are provided to each invoked method. If path is a function, it's invoked for, and this bound to, each element in collection.
+
+## Arguments
+`collection (Array|Object)`: The collection to iterate over.  
+`path (Array|Function|string)`: The path of the method to invoke or the function invoked per iteration.  
+`[args] (...*)`: The arguments to invoke each method with.
+
+## Returns
+`(Array)`: Returns the array of results.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var invokeMap = require("lodash/invokeMap");
+invokeMap([[5, 1, 7], [3, 2, 1]], 'sort');
+// => [[1, 5, 7], [1, 2, 3]]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function invokeMap(collection, path, args) {
+
+  let index = -1
+  const isFunc = typeof path === 'function'
+
+  const result = new Array(collection.length)
+
+  baseEach(collection, (value) => {
+    result[++index] = invoke(value, path, args)
+  })
+  return result
+}
+function invoke(object, path, args) {
+  path = castPath(path, object)
+  object = parent(object, path)
+  const func = object == null ? object : object[toKey(last(path))]
+  return func == null ? undefined : func.apply(object, args)
+}
+invokeMap([[5, 1, 7], [3, 2, 1]], 'sort');
+// => [[1, 5, 7], [1, 2, 3]]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
