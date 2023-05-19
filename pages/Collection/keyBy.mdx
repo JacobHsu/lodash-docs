@@ -60,4 +60,42 @@ keyBy(array, 'dir');
 <DeepDemo/>
 
 
+export const DeepIterateeDemo = () => {
+var code =  `
+function arrayReduce(array, iteratee, accumulator, initAccum) {
+
+  let index = -1
+  const length = array == null ? 0 : array.length
+
+  while (++index < length) {
+    iteratee(accumulator, array[index]);
+    accumulator[index+'o'] = array[index]; // iteratee(accumulator, array[index], index, array)
+  }
+  return accumulator
+}
+function reduce(collection, iteratee, accumulator) {
+  const initAccum = arguments.length < 3
+  return arrayReduce(collection, iteratee, accumulator, initAccum)
+}
+function keyBy(collection, iteratee) {
+  return reduce(collection, (result, value) => console.log(value) , {})
+}
+
+var array = [
+  { 'dir': 'left', 'code': 97 },
+  { 'dir': 'right', 'code': 100 }
+];
+keyBy(array, 'dir');
+// => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepIterateeDemo/>
+
+
 
