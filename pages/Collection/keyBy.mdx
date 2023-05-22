@@ -78,7 +78,7 @@ function reduce(collection, iteratee, accumulator) {
   return arrayReduce(collection, iteratee, accumulator, initAccum)
 }
 function keyBy(collection, iteratee) {
-  return reduce(collection, (result, value) => console.log(value) , {})
+  return reduce(collection, (result, value) => {console.log(result);console.log(value);} , {})
 }
 
 var array = [
@@ -96,6 +96,7 @@ keyBy(array, 'dir');
 };
 
 <DeepIterateeDemo/>
+
 
 
 
