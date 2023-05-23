@@ -1,0 +1,70 @@
+# `_.map()`
+
+`_.map(collection, [iteratee=_.identity])`
+
+Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:
+(value, index|key, collection).
+
+Many lodash methods are guarded to work as iteratees for methods like `_.every, _.filter, _.map, _.mapValues, _.reject`, and `_.some`.
+
+The guarded methods are:
+ary, chunk, curry, curryRight, drop, dropRight, every, fill, invert, parseInt, random, range, rangeRight, repeat, sampleSize, slice, some, sortBy, split, take, takeRight, template, trim, trimEnd, trimStart, and words
+
+## Arguments
+`collection (Array|Object)`: The collection to iterate over.  
+`[iteratee=_.identity] (Function)`: The function invoked per iteration.  
+
+## Returns
+`(Object)`: Returns the new mapped array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var map = require("lodash/map");
+function square(n) {
+  return n * n;
+}
+map({ 'a': 4, 'b': 8 }, square);
+// => [16, 64] (iteration order is not guaranteed)
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function map(array, iteratee) {
+  let index = -1
+  const length = array == null ? 0 : array.length
+  const result = new Array(length)
+
+  while (++index < length) {
+    result[index] = iteratee(array[index], index, array)
+  }
+  return result
+}
+function square(n) {
+  return n * n;
+}
+map([4, 8], square);
+// => [16, 64] (iteration order is not guaranteed)
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
