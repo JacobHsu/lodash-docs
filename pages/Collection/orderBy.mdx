@@ -1,0 +1,73 @@
+# `_.orderBy()`
+
+`_.orderBy(collection, [iteratees=[_.identity]], [orders])`
+
+This method is like `_.sortBy` except that it allows specifying the sort orders of the iteratees to sort by. If orders is unspecified, all values are sorted in ascending order. Otherwise, specify an order of "desc" for descending or "asc" for ascending sort order of corresponding values.
+
+## Arguments
+`collection (Array|Object)`: The collection to iterate over.  
+`[iteratees=[_.identity]] (Array[]|Function[]|Object[]|string[])`: The iteratees to sort by.
+`[orders] (string[])`: The sort orders of iteratees.
+
+## Returns
+`(Array)`: Returns the new sorted array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var orderBy = require("lodash/orderBy");
+var users = [
+  { 'user': 'fred',   'age': 48 },
+  { 'user': 'barney', 'age': 34 },
+  { 'user': 'fred',   'age': 40 },
+  { 'user': 'barney', 'age': 36 }
+];
+orderBy(users, ['user', 'age'], ['asc', 'desc']);
+// => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function orderBy(collection, iteratees, orders) {
+  if (collection == null) {
+    return []
+  }
+  if (!Array.isArray(iteratees)) {
+    iteratees = iteratees == null ? [] : [iteratees]
+  }
+  if (!Array.isArray(orders)) {
+    orders = orders == null ? [] : [orders]
+  }
+  return baseOrderBy(collection, iteratees, orders)
+}
+var users = [
+  { 'user': 'fred',   'age': 48 },
+  { 'user': 'barney', 'age': 34 },
+  { 'user': 'fred',   'age': 40 },
+  { 'user': 'barney', 'age': 36 }
+];
+orderBy(users, ['user', 'age'], ['asc', 'desc']);
+// => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
