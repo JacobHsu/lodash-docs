@@ -69,5 +69,54 @@ orderBy(users, ['user', 'age'], ['asc', 'desc']);
 
 <DeepDemo/>
 
+export const DeepInternalDemo = () => {
+var code =  `function baseOrderBy(collection, iteratees, orders) {
+  let criteriaIndex = -1
+  let eachIndex = -1
+
+  const result = new Array(collection.length)
+
+  baseEach(collection, (value) => {
+    const criteria = iteratees.map((iteratee) => iteratee(value))
+
+    result[++eachIndex] = {
+      criteria,
+      index: ++criteriaIndex,
+      value
+    }
+  })
+
+  return baseSortBy(result, (object, other) => compareMultiple(object, other, orders))
+}
+function baseEach(collection, iteratee) {
+  const length = collection.length
+  const iterable = Object(collection)
+  let index = -1
+
+  while (++index < length) {
+    if (iteratee(iterable[index], index, iterable) === false) {
+      break
+    }
+  }
+  return collection
+}
+var users = [
+  { 'user': 'fred',   'age': 48 },
+  { 'user': 'barney', 'age': 34 },
+  { 'user': 'fred',   'age': 40 },
+  { 'user': 'barney', 'age': 36 }
+];
+baseOrderBy(users, ['user', 'age'], ['asc', 'desc']);
+// => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepInternalDemo/>
+
 
 
