@@ -43,8 +43,30 @@ var code =  `function partition(collection, predicate) {
   ), [[], []])
 }
 function reduce(collection, iteratee, accumulator) {
-  const initAccum = arguments.length < 3
-  return arrayReduce(collection, iteratee, accumulator, initAccum, baseEach)
+  return arrayReduce(collection, iteratee, accumulator, baseEach)
+}
+function baseEach(collection, iteratee) {  
+  const length = collection.length
+  const iterable = Object(collection)
+
+  let index = -1
+
+  while (++index < length) {
+    if (iteratee(iterable[index], index, iterable) === false) {
+      break
+    }
+  }
+  return collection
+}
+function arrayReduce(array, iteratee, accumulator) {
+  let index = -1
+  const length = array == null ? 0 : array.length
+
+  while (++index < length) {
+    accumulator = iteratee(accumulator, array[index], index, array)
+  }
+  console.log(accumulator);
+  return accumulator
 }
 var users = [
   { 'user': 'barney',  'age': 36, 'active': false },
@@ -67,14 +89,8 @@ export const DeepBaseDemo = () => {
 var code =  `var isArrayLike = require("npm-lodash/isArrayLike");
 function baseEach(collection, iteratee) {
 
-  if (collection == null) {
-    return collection
-  }
-  console.log(!isArrayLike(collection))
-  // !isArrayLike(collection) => false
-  if (!isArrayLike(collection)) {
-    return baseForOwn(collection, iteratee)
-  }
+  console.log(!isArrayLike(collection));
+  
   const length = collection.length
   const iterable = Object(collection)
   let index = -1
