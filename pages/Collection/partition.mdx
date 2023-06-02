@@ -36,6 +36,34 @@ partition(users, 'active');
 
 ## Deep
 
+export const PreDemo = () => {
+var code =  `var array = [
+  { 'user': 'barney',  'age': 36, 'active': false },
+  { 'user': 'fred',    'age': 40, 'active': true },
+  { 'user': 'pebbles', 'age': 1,  'active': false }
+];
+const index = 1;
+const iteratee = (result, value, key) => (
+    result[0].push(value), result
+)
+// const iteratee = (result, value, key) => {
+//     result[0].push(value)
+//     return result
+// }
+let accumulator = [[], []];
+accumulator = iteratee(accumulator, array[index], index)
+console.log(accumulator)
+// => [[Object {user: "fred", age: 40, active: true}], []]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<PreDemo/>
+
 export const DeepDemo = () => {
 var code =  `function partition(collection, predicate) {
   return reduce(collection, (result, value, key) => (
@@ -73,7 +101,7 @@ var users = [
   { 'user': 'fred',    'age': 40, 'active': true },
   { 'user': 'pebbles', 'age': 1,  'active': false }
 ];
-partition(users, 'active');
+partition(users, function(o) { return o.active; });
 // => objects for [['fred'], ['barney', 'pebbles']]
 `   
   return (
