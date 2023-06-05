@@ -1,0 +1,68 @@
+# `_.reduce()`
+
+`_.reduce(collection, [iteratee=_.identity], [accumulator])`
+
+Reduces collection to a value which is the accumulated result of running each element in collection thru iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not given, the first element of collection is used as the initial value. The iteratee is invoked with four arguments:
+(accumulator, value, index|key, collection).
+
+Many lodash methods are guarded to work as iteratees for methods like _.reduce, _.reduceRight, and _.transform.
+
+The guarded methods are:
+assign, defaults, defaultsDeep, includes, merge, orderBy, and sortBy
+
+## Arguments
+`collection (Array|Object)`: The collection to iterate over.   
+`[iteratee=_.identity] (Function)`: The function invoked per iteration.  
+`[accumulator] (*)`: The initial value.
+
+## Returns
+`(*)`: Returns the accumulated value.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var reduce = require("lodash/reduce");
+reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
+  (result[value] || (result[value] = [])).push(key);
+  return result;
+}, {});
+// => { '1': ['a', 'c'], '2': ['b'] } (iteration order is not guaranteed)
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function reduce(collection, iteratee, accumulator) {
+  const func = Array.isArray(collection) ? arrayReduce : baseReduce
+  const initAccum = arguments.length < 3
+  return func(collection, iteratee, accumulator, initAccum, baseEach)
+}
+console.log( Array.isArray({ 'a': 1, 'b': 2, 'c': 1 }) ) // false => baseReduce
+reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
+  (result[value] || (result[value] = [])).push(key);
+  return result;
+}, {});
+// => { '1': ['a', 'c'], '2': ['b'] } (iteration order is not guaranteed)
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
+
