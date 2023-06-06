@@ -42,10 +42,24 @@ reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
 ## Deep
 
 export const DeepDemo = () => {
-var code =  `function reduce(collection, iteratee, accumulator) {
+var code =  `var isArrayLike = require("npm-lodash/isArrayLike");
+function reduce(collection, iteratee, accumulator) {
   const func = Array.isArray(collection) ? arrayReduce : baseReduce
   const initAccum = arguments.length < 3
   return func(collection, iteratee, accumulator, initAccum, baseEach)
+}
+function baseReduce(collection, iteratee, accumulator, initAccum, eachFunc) {
+  eachFunc(collection, (value, index, collection) => {
+    accumulator = initAccum
+      ? (initAccum = false, value)
+      : iteratee(accumulator, value, index, collection)
+  })
+  return accumulator
+}
+function baseEach(collection, iteratee) {
+  if (!isArrayLike(collection)) {
+    return baseForOwn(collection, iteratee)
+  }
 }
 console.log( Array.isArray({ 'a': 1, 'b': 2, 'c': 1 }) ) // false => baseReduce
 reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
@@ -62,6 +76,21 @@ reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
 };
 
 <DeepDemo/>
+
+export const DemoInternal = () => {
+var code =  `var collection = { 'a': 1, 'b': 2, 'c': 1 }
+console.log( Object(collection) ) // { a: 1, b: 2, c: 1 }
+console.log( Object.keys(collection) ) // [ 'a', 'b', 'c' ]
+console.log( Object.keys(Object(collection)) )  // [ 'a', 'b', 'c' ]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DemoInternal/>
 
 
 
