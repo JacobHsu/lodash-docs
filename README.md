@@ -6,6 +6,10 @@ This is a template for creating documentation with [Nextra](https://nextra.site)
 
 [![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
 
+## Npmjs
+
+[npm-lodash](https://www.npmjs.com/package/npm-lodash)  
+
 ## References
 
 [Nextra: Docs Starter Kit](https://vercel.com/templates/next.js/documentation-starter-kit)  
