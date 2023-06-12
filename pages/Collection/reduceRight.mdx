@@ -39,9 +39,19 @@ export const DeepDemo = () => {
 var code =  `
 var baseFor = require("npm-lodash/baseFor");
 function reduceRight(collection, iteratee, accumulator) {
-  const func = Array.isArray(collection) ? arrayReduceRight : baseReduce
+  const func = arrayReduceRight // Array.isArray(collection) ? arrayReduceRight : baseReduce
   const initAccum = arguments.length < 3
-  return func(collection, iteratee, accumulator, initAccum, baseEachRight)
+  return func(collection, iteratee, accumulator, initAccum)
+}
+function arrayReduceRight(array, iteratee, accumulator, initAccum) {
+  let length = array == null ? 0 : array.length
+  if (initAccum && length) {
+    accumulator = array[--length]
+  }
+  while (length--) {
+    accumulator = iteratee(accumulator, array[length], length, array)
+  }
+  return accumulator
 }
 
 var array = [[0, 1], [2, 3], [4, 5]];
