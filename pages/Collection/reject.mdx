@@ -1,0 +1,88 @@
+# `_.reject()`
+
+`_.reject(collection, [predicate=_.identity])`
+
+The opposite of _.filter; this method returns the elements of collection that predicate does not return truthy for.
+
+## Arguments
+`collection (Array|Object)`: The collection to iterate over.   
+`[predicate=_.identity] (Function)`: The function invoked per iteration.
+
+
+## Returns
+`(Array)`: Returns the new filtered array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var reject = require("lodash/reject");
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': false },
+  { 'user': 'fred',   'age': 40, 'active': true }
+];
+ 
+reject(users, function(o) { return !o.active; });
+// => objects for ['fred']
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `// var negate = require("npm-lodash/negate");
+function reject(collection, predicate) {
+  const func = Array.isArray(collection) ? filter : filterObject
+  return func(collection, negate(predicate))
+}
+function negate(predicate) {
+  if (typeof predicate !== 'function') {
+    throw new TypeError('Expected a function')
+  }
+  return function(...args) {
+    return !predicate.apply(this, args)
+  }
+}
+function filter(array, predicate) {
+  let index = -1
+  let resIndex = 0
+  const length = array == null ? 0 : array.length
+  const result = []
+
+  while (++index < length) {
+    const value = array[index]
+    if (predicate(value, index, array)) {
+      result[resIndex++] = value
+    }
+  }
+  return result
+}
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': false },
+  { 'user': 'fred',   'age': 40, 'active': true }
+];
+ 
+reject(users, function(o) { return !o.active; });
+// => objects for ['fred']
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
+
+
