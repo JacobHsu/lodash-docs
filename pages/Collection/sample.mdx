@@ -1,0 +1,49 @@
+# `_.sample(collection)`
+
+Gets a random element from collection.
+
+## Arguments
+`collection (Array|Object)`: The collection to sample.
+
+## Returns
+`(*)`: Returns the random element.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var sample = require("lodash/sample");
+sample([1, 2, 3, 4]);
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function sample(array) {
+  const length = array == null ? 0 : array.length
+  return length ? array[Math.floor(Math.random() * length)] : undefined
+}
+sample([1, 2, 3, 4]);
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
+
+
