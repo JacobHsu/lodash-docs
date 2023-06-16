@@ -1,0 +1,102 @@
+# `_.sampleSize(collection, [n=1])`
+
+Gets n random elements at unique keys from collection up to the size of collection.
+
+## Arguments
+`collection (Array|Object)`: The collection to sample.  
+`[n=1] (number)`: The number of elements to sample.
+
+## Returns
+`(Array)`: Returns the random element.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var sampleSize = require("lodash/sampleSize");
+sampleSize([1, 2, 3], 2);
+// => [3, 1]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `// var copyArray = require("npm-lodash/copyArray");
+function sampleSize(array, n) {
+  n = n == null ? 1 : n
+  const length = array == null ? 0 : array.length
+  if (!length || n < 1) {
+    return []
+  }
+  n = n > length ? length : n
+  let index = -1
+  const lastIndex = length - 1
+  const result = copyArray(array)
+  while (++index < n) {
+    const rand = index + Math.floor(Math.random() * (lastIndex - index + 1))
+    const value = result[rand]
+    result[rand] = result[index]
+    result[index] = value
+  }
+  return slice(result, 0, n)
+}
+function copyArray(source, array) {
+  let index = -1
+  const length = source.length
+
+  array || (array = new Array(length))
+  while (++index < length) {
+    array[index] = source[index]
+  }
+  return array
+}
+function slice(array, start, end) {
+  let length = array == null ? 0 : array.length
+  if (!length) {
+    return []
+  }
+  start = start == null ? 0 : start
+  end = end === undefined ? length : end
+
+  if (start < 0) {
+    start = -start > length ? 0 : (length + start)
+  }
+  end = end > length ? length : end
+  if (end < 0) {
+    end += length
+  }
+  length = start > end ? 0 : ((end - start) >>> 0)
+  start >>>= 0
+
+  let index = -1
+  const result = new Array(length)
+  while (++index < length) {
+    result[index] = array[index + start]
+  }
+  return result
+}
+sampleSize([1, 2, 3], 2);
+// => [3, 1]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
+
+
