@@ -1,0 +1,65 @@
+# `_.shuffle(collection)`
+
+Creates an array of shuffled values, using a version of the `Fisher-Yates shuffle`.
+
+## Arguments
+`collection (Array|Object)`: The collection to shuffle. 
+
+## Returns
+`(Array)`: Returns the new shuffled array.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var shuffle = require("lodash/shuffle");
+shuffle([1, 2, 3, 4]);
+// => [4, 1, 3, 2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var copyArray = require("npm-lodash/copyArray");
+function shuffle(array) {
+  const length = array == null ? 0 : array.length
+  if (!length) {
+    return []
+  }
+  let index = -1
+  const lastIndex = length - 1
+  const result = copyArray(array)
+  while (++index < length) {
+    const rand = index + Math.floor(Math.random() * (lastIndex - index + 1))
+    console.log(rand)
+    const value = result[rand]
+    result[rand] = result[index]
+    result[index] = value
+  }
+  return result
+}
+shuffle([1, 2, 3, 4]);
+// => [4, 1, 3, 2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
+
+

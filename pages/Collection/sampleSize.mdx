@@ -30,7 +30,7 @@ sampleSize([1, 2, 3], 2);
 ## Deep
 
 export const DeepDemo = () => {
-var code =  `// var copyArray = require("npm-lodash/copyArray");
+var code =  `var copyArray = require("npm-lodash/copyArray");
 function sampleSize(array, n) {
   n = n == null ? 1 : n
   const length = array == null ? 0 : array.length
@@ -48,16 +48,6 @@ function sampleSize(array, n) {
     result[index] = value
   }
   return slice(result, 0, n)
-}
-function copyArray(source, array) {
-  let index = -1
-  const length = source.length
-
-  array || (array = new Array(length))
-  while (++index < length) {
-    array[index] = source[index]
-  }
-  return array
 }
 function slice(array, start, end) {
   let length = array == null ? 0 : array.length
