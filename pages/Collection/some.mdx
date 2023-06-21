@@ -1,0 +1,61 @@
+# `_.some()`
+
+`_.some(collection, [predicate=_.identity])`
+
+Checks if predicate returns truthy for **any** element of collection. Iteration is stopped once predicate returns truthy. The predicate is invoked with three arguments: (value, index|key, collection).
+
+## Arguments
+`collection (Array|Object)`: The collection to iterate over.  
+`[predicate=_.identity] (Function)`: The function invoked per iteration.
+
+## Returns
+`(boolean)`: Returns true if any element passes the predicate check, else false.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var some = require("lodash/some");
+some([null, 0, 'yes', false], Boolean);
+// => true
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function some(array, predicate) {
+  let index = -1
+  const length = array == null ? 0 : array.length
+
+  while (++index < length) {
+    if (predicate(array[index], index, array)) {
+      return true
+    }
+  }
+  return false
+}
+some([null, 0, 'yes', false], Boolean);
+// => true
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
+
+
