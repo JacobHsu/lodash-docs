@@ -65,6 +65,26 @@ baseSortBy(users, [function(o) { return o.user; }]);
 
 <DeepDemo/>
 
+## MDN
+
+export const DeepMdn = () => {
+var code =  `const numberArray = [40, 1, 5, 200];
+function compareNumbers(a, b) {
+  return a - b;
+}
+numberArray.sort(compareNumbers);
+// => objects for [1, 5, 40, 200]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepMdn/>
+
+
 
 
 
