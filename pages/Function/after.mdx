@@ -1,0 +1,76 @@
+# `_.after(n, func)`
+
+The opposite of `_.before`; this method creates a function that invokes func once it's called n or more times.
+
+## Arguments
+`n (number)`: The number of calls before func is invoked.  
+`func (Function)`: The function to restrict.  
+
+## Returns
+`(Function)`: Returns the new restricted function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var after = require("lodash/after");
+var forEach = require("lodash/forEach");
+var saves = ['profile', 'settings'];
+ 
+var done = after(saves.length, function() {
+  console.log('done saving!');
+});
+done();
+done();
+// => done方法在两次调用之后，后续调用会一直输出'done saving!'
+// forEach(saves, function(type) {
+//   asyncSave({ 'type': type, 'complete': done });
+// });
+// => Logs 'done saving!' after the two async saves have completed.
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const Difference = () => {
+var code =  `function after(n, func) {
+  if (typeof func !== 'function') {
+    throw new TypeError('Expected a function')
+  }
+  n = n || 0
+  return function(...args) {
+    if (--n < 1) {
+      return func.apply(this, args)
+    }
+  }
+}
+var saves = ['profile', 'settings'];
+ 
+var done = after(saves.length, function() {
+  console.log('done saving!');
+});
+ 
+done();
+done();
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Difference/>
+
+
+
+
+
