@@ -1,0 +1,36 @@
+# `_.ary()`
+
+`_.ary(func, [n=func.length])`  
+Creates a function that invokes func, with up to n arguments, ignoring any additional arguments.
+
+## Arguments
+`func (Function)`: The function to cap arguments for.  
+`[n=func.length] (number)`: The arity cap.
+
+## Returns
+`(Function)`: Returns the new capped function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var ary = require("lodash/ary");
+var map = require("lodash/map");
+map(['6', '8', '10'], ary(parseInt, 1));
+// => [6, 8, 10]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
+
+
