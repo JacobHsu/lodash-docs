@@ -1,0 +1,35 @@
+# `_.before(n, func)`
+
+Creates a function that invokes func, with the this binding and arguments of the created function, while it's called less than n times. Subsequent calls to the created function return the result of the last func invocation.
+
+## Arguments
+`n (number)`: : The number of calls at which `func` is no longer invoked.
+`func (Function)`: The function to restrict.
+
+## Returns
+`(Function)`: Returns the new restricted function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var before = require("lodash/before");
+var jQuery = require( "jquery" );
+jQuery(element).on('click', before(5, addContactToList));
+// => Allows adding up to 4 contacts to the list.
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
+
+
