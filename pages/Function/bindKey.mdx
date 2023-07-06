@@ -1,0 +1,49 @@
+# `_.bindKey()`
+
+`_.bindKey(object, key, [partials])`
+
+Creates a function that invokes the method at object[key] with partials prepended to the arguments it receives.
+
+This method differs from `_.bind` by allowing bound functions to reference methods that may be redefined or don't yet exist. See Peter Michaux's article for more details.
+
+The _.bindKey.placeholder value, which defaults to _ in monolithic builds, may be used as a placeholder for partially applied arguments.
+
+## Arguments
+`object (Object)`: The object to invoke the method on.  
+`key (string)`: The key of the method.  
+`[partials] (...*)`: The arguments to be partially applied.
+
+## Returns
+`(Function)`: Returns the new bound function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var bindKey = require("lodash/bindKey");
+var object = {
+  'user': 'fred',
+  'greet': function(greeting, punctuation) {
+    return greeting + ' ' + this.user + punctuation;
+  }
+};
+ 
+var bound = bindKey(object, 'greet', 'hi');
+bound('!');
+// => 'hi fred!'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
+
+
