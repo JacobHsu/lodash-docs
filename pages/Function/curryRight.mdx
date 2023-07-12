@@ -1,0 +1,46 @@
+# `_.curryRight()`
+
+`_.curryRight(func, [arity=func.length])`
+
+This method is like `_.curry` except that arguments are applied to func in the manner of `_.partialRight` instead of `_.partial`.
+
+The _.curryRight.placeholder value, which defaults to _ in monolithic builds, may be used as a placeholder for provided arguments.
+
+**Note**: This method doesn't set the "length" property of curried functions.
+
+## Arguments
+`func (Function)`: The function to curry.  
+`[arity=func.length] (number)`: The arity of func.
+
+## Returns
+`(Function)`: Returns the new curried function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var curryRight = require("lodash/curryRight");
+var abc = function(a, b, c) {
+  return [a, b, c];
+};
+ 
+var curried = curryRight(abc);
+ 
+curried(3)(2)(1);
+// => [1, 2, 3]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
+
+
