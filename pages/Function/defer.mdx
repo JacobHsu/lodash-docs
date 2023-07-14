@@ -1,0 +1,36 @@
+# `_.defer(func, [args])`
+
+Defers invoking the func until the current call stack has cleared. Any additional arguments are provided to func when it's invoked.
+
+## Arguments
+`func (Function)`: The function to defer.  
+`[args] (...*)`: The arguments to invoke func with.  
+
+## Returns
+`(number)`:Returns the timer id.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var defer = require("lodash/defer");
+defer(function(text) {
+  console.log(text);
+}, 'deferred');
+// => Logs 'deferred' after one millisecond.
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
+
+
