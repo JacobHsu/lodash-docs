@@ -1,0 +1,37 @@
+# `_.delay(func, wait, [args])`
+
+Invokes func after wait milliseconds. Any additional arguments are provided to func when it's invoked.
+
+## Arguments
+`func (Function)`: The function to delay.  
+`wait (number)`: The number of milliseconds to delay invocation.  
+`[args] (...*)`: The arguments to invoke func with.  
+
+## Returns
+`(number)`:Returns the timer id.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var delay = require("lodash/delay");
+delay(function(text) {
+  console.log(text);
+}, 1000, 'later');
+// => Logs 'later' after one second.
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
+
+
