@@ -1,0 +1,78 @@
+# `_.memoize(func, [resolver])`
+
+Creates a function that memoizes the result of func. If resolver is provided, it determines the cache key for storing the result based on the arguments provided to the memoized function. By default, the first argument provided to the memoized function is used as the map cache key. The func is invoked with the this binding of the memoized function.
+
+**Note**: The cache is exposed as the cache property on the memoized function. Its creation may be customized by replacing the _.memoize.Cache constructor with one whose instances implement the Map method interface of clear, delete, get, has, and set.
+
+
+## Arguments
+`func (Function)`: The function to have its output memoized.  
+`[resolver] (Function)`: The function to resolve the cache key.  
+
+## Returns
+`(Function)`:Returns the new memoized function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var memoize = require("lodash/memoize");
+var values = require("lodash/values");
+var object = { 'a': 1, 'b': 2 };
+var other = { 'c': 3, 'd': 4 };
+ 
+var myvalues = memoize(values);
+myvalues(object);
+// => [1, 2]
+myvalues(other);
+// => [3, 4]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var values = require("lodash/values");
+function memoize(func, resolver) {
+  if (typeof func !== 'function' || (resolver != null && typeof resolver !== 'function')) {
+    throw new TypeError('Expected a function')
+  }
+  const memoized = function(...args) {
+    const key = resolver ? resolver.apply(this, args) : args[0]
+    const cache = memoized.cache
+
+    if (cache.has(key)) {
+      return cache.get(key)
+    }
+    const result = func.apply(this, args)
+    memoized.cache = cache.set(key, result) || cache
+    return result
+  }
+  memoized.cache = new (memoize.Cache || Map)
+  return memoized
+}
+var object = { 'a': 1, 'b': 2 };
+var myvalues = memoize(values);
+myvalues(object);
+// => [1, 2]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
+
