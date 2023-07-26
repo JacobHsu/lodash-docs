@@ -1,0 +1,86 @@
+# `_.overArgs()`
+
+`_.overArgs(func, [transforms=[_.identity]])`
+
+Creates a function that invokes func with its arguments transformed.
+
+
+## Arguments
+`func (Function)`: The function to wrap.  
+`[transforms=[_.identity]] (...(Function|Function[]))`: The argument transforms.
+
+## Returns
+`(Function)`:Returns the new function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var overArgs = require("lodash/overArgs");
+function doubled(n) {
+  return n * 2;
+}
+ 
+function square(n) {
+  return n * n;
+}
+ 
+var func = overArgs(function(x, y) {
+  return [x, y];
+}, [square, doubled]);
+ 
+func(9, 3);
+// => [81, 6]
+
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `ffunction overArgs(func, transforms) {
+  const funcsLength = transforms.length
+  return function(...args) {
+    let index = -1
+    const length = Math.min(args.length, funcsLength)
+    while (++index < length) {
+      args[index] = transforms[index].call(this, args[index])
+    }
+    return func.apply(this, args)
+  }
+}
+function doubled(n) {
+  return n * 2;
+}
+ 
+function square(n) {
+  return n * n;
+}
+ 
+var func = overArgs(function(x, y) {
+  return [x, y];
+}, [square, doubled]);
+ 
+func(9, 3);
+// => [81, 6]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
+
+
