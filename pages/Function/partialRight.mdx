@@ -1,0 +1,45 @@
+# `_.partialRight()`
+
+`_.partialRight(func, [partials])`
+
+This method is like _.partial except that partially applied arguments are appended to the arguments it receives.
+
+The _.partialRight.placeholder value, which defaults to _ in monolithic builds, may be used as a placeholder for partially applied arguments.
+
+**Note**: This method doesn't set the "length" property of partially applied functions.
+
+
+## Arguments
+`func (Function)`: The function to partially apply arguments to.  
+`[partials] (...*)`:  The arguments to be partially applied.
+
+## Returns
+`(Function)`:Returns the new partially applied function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var partialRight = require("lodash/partialRight");
+
+function greet(greeting, name) {
+  return greeting + ' ' + name;
+}
+ 
+var greetFred = partialRight(greet, 'fred');
+greetFred('hi');
+// => 'hi fred'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
