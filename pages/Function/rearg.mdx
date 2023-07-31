@@ -1,0 +1,40 @@
+# `_.rearg(func, indexes)`
+
+`_.partialRight(func, [partials])`
+
+Creates a function that invokes func with arguments arranged according to the specified indexes where the argument value at the first index is provided as the first argument, the argument value at the second index is provided as the second argument, and so on.
+
+
+## Arguments
+`func (Function)`: The function to rearrange arguments for.  
+`indexes (...(number|number[]))`: The arranged argument indexes.
+
+## Returns
+`(Function)`:Returns the new function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var rearg = require("lodash/rearg");
+
+var rearged = rearg(function(a, b, c) {
+  return [a, b, c];
+}, [2, 0, 1]);
+ 
+rearged('b', 'c', 'a')
+// => ['a', 'b', 'c']
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
