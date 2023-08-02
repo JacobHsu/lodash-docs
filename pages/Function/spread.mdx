@@ -1,0 +1,38 @@
+# `_.spread(func, [start=0])`
+
+Creates a function that invokes func with the this binding of the create function and an array of arguments much like Function#apply.
+
+**Note**: This method is based on the spread operator.
+
+## Arguments
+`func (Function)`: The function to spread arguments over.   
+`[start=0] (number)`: The start position of the spread.
+
+## Returns
+`(Function)`:Returns the new function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var spread = require("lodash/spread");
+var say = spread(function(who, what) {
+  return who + ' says ' + what;
+});
+ 
+say(['fred', 'hello']);
+// => 'fred says hello'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
