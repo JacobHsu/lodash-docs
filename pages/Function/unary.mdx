@@ -1,0 +1,36 @@
+# `_.unary(func)`
+
+`_throttle(func, [wait=0], [options={}])`
+
+Creates a function that accepts up to one argument, ignoring any additional arguments.
+
+
+## Arguments
+`func (Function)`: The function to cap arguments for.   
+`(Function)`: Returns the new capped function.  
+
+## Returns
+`(Function)`:Returns the new throttled function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var unary = require("lodash/unary");
+var map = require("lodash/map");
+map(['6', '8', '10'], unary(parseInt));
+// => [6, 8, 10]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
