@@ -1,0 +1,40 @@
+# `_.wrap()`
+
+`_.wrap(value, [wrapper=identity])`
+
+Creates a function that provides value to wrapper as its first argument. Any additional arguments provided to the function are appended to those provided to the wrapper. The wrapper is invoked with the this binding of the created function.
+
+
+## Arguments
+`value (*)`: The value to wrap.
+`[wrapper=identity] (Function)`: The wrapper function.
+
+## Returns
+`(Function)`:Returns the new function.
+
+## Example
+
+import Embed from 'runkit-embed-react';
+
+export const Demo = () => {
+var code =  `var wrap = require("lodash/wrap");
+var escape = require("lodash/escape");
+var p = wrap(escape, function(func, text) {
+  return '<p>' + func(text) + '</p>';
+});
+ 
+p('fred, barney, & pebbles');
+// => '<p>fred, barney, &amp; pebbles</p>'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo/>
+
+
+
+
