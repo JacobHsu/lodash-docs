@@ -1,0 +1,43 @@
+# `_.cloneWith()`
+
+`cloneWith(value, [customizer])`
+
+This method is like _.clone except that it accepts customizer which is invoked to produce the cloned value. If customizer returns undefined, cloning is handled by the method instead. The customizer is invoked with up to four arguments; (value [, index|key, object, stack]).
+
+
+## Arguments
+
+`value (*)`: The value to clone.  
+`[customizer] (Function)`: The function to customize cloning.
+
+## Returns
+
+`(*)`: Returns the cloned value.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var cloneWith = require("lodash/cloneWith");
+var isElement = require("lodash/isElement");
+function customizer(value) {
+  if (isElement(value)) {
+    return value.cloneNode(false);
+  }
+}
+ 
+var el = cloneWith(document.body, customizer);
+ 
+console.log(el === document.body);
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
