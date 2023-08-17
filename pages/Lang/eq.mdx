@@ -1,0 +1,56 @@
+# `_.eq(value, other)`
+
+Performs a SameValueZero comparison between two values to determine if they are equivalent.
+
+
+## Arguments
+
+`value (*)`: The value to compare.
+`other (*)`: The other value to compare.
+
+## Returns
+
+`(boolean)`: Returns true if the values are equivalent, else false.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var eq = require("lodash/eq");
+var object = { 'a': 1 };
+var other = { 'a': 1 };
+ 
+eq(object, object);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function eq(value, other) {
+  return value === other || (value !== value && other !== other)
+}
+var object = { 'a': 1 };
+var other = { 'a': 1 };
+ 
+eq(object, object);
+// => true
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
