@@ -1,0 +1,57 @@
+# `_.gte(value, other)`
+
+Checks if value is greater than or equal to other.
+
+## Arguments
+
+`value (*)`: The value to compare.  
+`other (*)`: The other value to compare.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is greater than or equal to `other`, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var gte = require("lodash/gte");
+gte(3, 1);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function gte(value, other) {
+  if (!(typeof value === 'string' && typeof other === 'string')) {
+    value = +value
+    other = +other
+  }
+  return value >= other
+}
+
+gte(3, 1);
+// => true
+
+gte(3, 3);
+// => true
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
