@@ -1,0 +1,61 @@
+# `_.isArrayLikeObject(value)`
+
+This method is like _.isArrayLike except that it also checks if value is an object.
+
+## Arguments
+
+`value (*)`: The value to check.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is an array-like object, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var isArrayLikeObject = require("lodash/isArrayLikeObject");
+isArrayLikeObject([1, 2, 3]);
+// => true
+
+isArrayLikeObject('abc');
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+function isLength(value) {
+  return typeof value === 'number' &&
+    value > -1 && value % 1 == 0 && value <= 9007199254740991 // MAX_SAFE_INTEGER
+}
+function isArrayLike(value) {
+  return value != null && typeof value !== 'function' && isLength(value.length)
+}
+function isArrayLikeObject(value) {
+  return isObjectLike(value) && isArrayLike(value)
+}
+isArrayLikeObject([1, 2, 3]);
+// => true
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
