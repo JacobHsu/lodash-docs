@@ -1,0 +1,60 @@
+# `_.isBoolean(value)`
+
+Checks if value is classified as a boolean primitive or object.
+
+## Arguments
+
+`value (*)`: The value to check.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value`  is a boolean, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var isBoolean = require("lodash/isBoolean");
+isBoolean(false);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+function getTag(value) {
+  if (value == null) {
+    return value === undefined ? '[object Undefined]' : '[object Null]'
+  }
+  return Object.prototype.toString.call(value)
+}
+function isBoolean(value) {
+  return value === true || value === false ||
+    (isObjectLike(value) && getTag(value) == '[object Boolean]')
+}
+
+isBoolean(false);
+// => true
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
