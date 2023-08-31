@@ -1,0 +1,48 @@
+# `_.isBuffer(value)`
+
+Checks if value is a buffer.
+
+## Arguments
+
+`value (*)`: The value to check.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value`  is a buffer, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var isBuffer = require("lodash/isBuffer");
+isBuffer(new Buffer(2));
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+const nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined
+const isBuffer = nativeIsBuffer || (() => false)
+isBuffer(new Buffer(2));
+// => true
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
