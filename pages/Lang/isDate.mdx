@@ -1,0 +1,62 @@
+# `_.isDate(value)`
+
+Checks if value is classified as a `Date` object.
+
+## Arguments
+
+`value (*)`: The value to check.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a date object, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var isDate = require("lodash/isDate");
+isDate('Mon April 23 2012');
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+const nodeTypes = ((() => {
+  try {
+    const typesHelper = freeModule && freeModule.require && freeModule.require('util').types
+    return typesHelper
+      ? typesHelper
+      /* Legacy process.binding('util') for Node.js earlier than v10. */
+      : freeProcess && freeProcess.binding && freeProcess.binding('util')
+  } catch (e) {}
+})())  
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+const nodeIsDate = nodeTypes && nodeTypes.isDate  
+const isDate = nodeIsDate
+  ? (value) => nodeIsDate(value)
+  : (value) => isObjectLike(value) && getTag(value) == '[object Date]'
+isDate('Mon April 23 2012');
+// => false
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
