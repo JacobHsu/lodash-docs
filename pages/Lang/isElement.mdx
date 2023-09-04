@@ -1,0 +1,65 @@
+# `_.isElement(value)`
+
+Checks if value is likely a DOM element.
+
+## Arguments
+
+`value (*)`: The value to check.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a DOM element, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var isElement = require("lodash/isElement");
+isElement(document.body);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function isPlainObject(value) {
+  if (!isObjectLike(value) || getTag(value) != '[object Object]') {
+    return false
+  }
+  if (Object.getPrototypeOf(value) === null) {
+    return true
+  }
+  let proto = value
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto)
+  }
+  return Object.getPrototypeOf(value) === proto
+}
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+function isElement(value) {
+  return isObjectLike(value) && value.nodeType === 1 && !isPlainObject(value)
+}
+isElement(document.body);
+// => true
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
