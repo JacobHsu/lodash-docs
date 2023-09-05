@@ -1,0 +1,82 @@
+# `_.isEmpty(value)`
+
+
+Checks if value is an empty object, collection, map, or set.
+
+Objects are considered empty if they have no own enumerable string keyed properties.
+
+Array-like values such as `arguments` objects, arrays, buffers, strings, or jQuery-like collections are considered empty if they have a length of 0. Similarly, maps and sets are considered empty if they have a `size` of `0`.
+
+## Arguments
+
+`value (*)`: The value to check.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is empty, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isEmpty = require("lodash/isEmpty");
+isEmpty(1);
+// => true
+ 
+ isEmpty([1, 2, 3]);
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var isArrayLike = require("npm-lodash/isArrayLike");
+var getTag = require("npm-lodash/getTag");
+function isEmpty(value) {
+  if (value == null) {
+    return true
+  }
+  if (isArrayLike(value) &&
+      (Array.isArray(value) || typeof value === 'string' || typeof value.splice === 'function' ||
+        isBuffer(value) || isTypedArray(value) || isArguments(value))) {
+    return !value.length
+  }
+  const tag = getTag(value)
+  if (tag == '[object Map]' || tag == '[object Set]') {
+    return !value.size
+  }
+  if (isPrototype(value)) {
+    return !Object.keys(value).length
+  }
+  for (const key in value) {
+    if (hasOwnProperty.call(value, key)) {
+      return false
+    }
+  }
+  return true
+}
+isEmpty(1);
+// => true
+ 
+ isEmpty([1, 2, 3]);
+// => false
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
