@@ -1,0 +1,67 @@
+# `_.isEqual(value, other)`
+
+Performs a deep comparison between two values to determine if they are equivalent.
+
+**Note**: This method supports comparing arrays, array buffers, booleans, date objects, error objects, maps, numbers, Object objects, regexes, sets, strings, symbols, and typed arrays. Object objects are compared by their own, not inherited, enumerable properties. Functions and DOM nodes are compared by strict equality, i.e. `===`.
+
+## Arguments
+
+`value (*)`: The value to compare.  
+`other (*)`: The other value to compare.
+
+## Returns
+
+`(boolean)`: Returns `true` if the values are equivalent, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isEqual = require("lodash/isEqual");
+var object = { 'a': 1 };
+var other = { 'a': 1 };
+ 
+isEqual(object, other);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function baseIsEqual(value, other, bitmask, customizer, stack) {
+  if (value === other) {
+    return true
+  }
+  if (value == null || other == null || (!isObjectLike(value) && !isObjectLike(other))) {
+    return value !== value && other !== other
+  }
+  return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack)
+}
+function isEqual(value, other) {
+  return baseIsEqual(value, other)
+}
+var object = { 'a': 1 };
+var other = { 'a': 1 };
+ 
+isEqual(object, other);
+// => true
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+

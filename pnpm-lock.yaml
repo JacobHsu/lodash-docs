@@ -15,8 +15,8 @@ dependencies:
     specifier: 2.0.1
     version: 2.0.1(next@13.0.6)(react-dom@18.2.0)(react@18.2.0)
   npm-lodash:
-    specifier: ^1.0.4
-    version: 1.0.4
+    specifier: ^1.0.8
+    version: 1.0.8
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -1513,8 +1513,8 @@ packages:
       - supports-color
     dev: false
 
-  /npm-lodash@1.0.4:
-    resolution: {integrity: sha512-Mvfh68Uk4rRs6nTmEcbYNz7jJ/mg56P9ZogCZ4zugz1AhBOE5ixCyfR7k7O9yDmIFQ51bal9O1rk4w4voBJEgg==}
+  /npm-lodash@1.0.8:
+    resolution: {integrity: sha512-tKVQJizdVqNeqa03Ygu1DAOPV2M0wKTKyKRokT6fAHNYMnkFy51M8Boafxd6XvgbQkqRNNAQorlNSiDJF6aCig==}
     dev: false
 
   /npm-run-path@2.0.2:
