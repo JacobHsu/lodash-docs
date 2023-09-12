@@ -1,0 +1,63 @@
+# `_.isFinite(value)`
+
+Checks if value is a finite primitive number.
+
+**Note**: This method is based on `Number.isFinite`.
+
+
+## Arguments
+
+`value (*)`: The value to check.  
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a finite number, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isFinite = require("lodash/isFinite");
+
+isFinite(3);
+// => true
+
+isFinite('3');
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## MDN
+
+export const DeepDemo = () => {
+  var code = `
+function div(x) {
+  if (isFinite(1000 / x)) {
+    return 'Number is NOT Infinity.';
+  }
+  return 'Number is Infinity!';
+}
+
+console.log(div(0));
+// Expected output: "Number is Infinity!""
+
+console.log(div(1));
+// Expected output: "Number is NOT Infinity."
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
