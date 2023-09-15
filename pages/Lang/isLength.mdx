@@ -1,0 +1,64 @@
+# `_.isLength(value)`
+
+Checks if `value` is a valid array-like length.
+
+**Note**: This method is loosely based on `ToLength`.  
+
+## Arguments
+
+`value (*)`: The value to check.  
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a valid length, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isLength = require("lodash/isLength");
+ 
+isLength(3);
+// => true
+ 
+isLength(Number.MIN_VALUE);
+// => false
+ 
+isLength(Infinity);
+// => false
+ 
+isLength('3');
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+const MAX_SAFE_INTEGER = 9007199254740991
+function isLength(value) {
+  return typeof value === 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER
+}
+
+isLength('3');
+// => false
+`;
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
