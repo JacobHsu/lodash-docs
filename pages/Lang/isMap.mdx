@@ -1,0 +1,72 @@
+# `_.isMap(value)`
+
+Checks if `value` is classified as a `Map` object.
+
+## Arguments
+
+`value (*)`: The value to check.  
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a valid length, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isMap = require("lodash/isMap");
+ 
+isMap(new Map);
+// => true
+ 
+isMap(new WeakMap);
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var getTag = require("npm-lodash/getTag");
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+const nodeTypes = ((() => {
+  try {
+    const typesHelper = freeModule && freeModule.require && freeModule.require('util').types
+    return typesHelper
+      ? typesHelper
+      : freeProcess && freeProcess.binding && freeProcess.binding('util')
+  } catch (e) {}
+})())
+const nodeIsMap = nodeTypes && nodeTypes.isMap
+const isMap = nodeIsMap
+  ? (value) => nodeIsMap(value)
+  : (value) => isObjectLike(value) && getTag(value) == '[object Map]'
+
+isMap(new Map);
+// => true
+ 
+isMap(new WeakMap);
+// => false  
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
