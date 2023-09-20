@@ -1,0 +1,112 @@
+# `_.isMatch(object, source)`
+
+Performs a partial deep comparison between `object` and `source` to determine if object contains equivalent property values.
+
+**Note**: This method is equivalent to `_.matches` when source is partially applied.
+
+Partial comparisons will match empty array and empty object source values against any array or object value, respectively. See _.isEqual for a list of supported value comparisons.
+
+## Arguments
+
+`object (Object)`: The object to inspect.  
+`source (Object)`: The object of property values to match.  
+
+## Returns
+
+`(boolean)`: Returns `true` if `object` is a match, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isMatch = require("lodash/isMatch");
+ 
+var object = { 'a': 1, 'b': 2 };
+ 
+isMatch(object, { 'b': 2 });
+// => true
+ 
+isMatch(object, { 'b': 1 });
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function baseIsMatch(object, source, matchData, customizer) {
+  let index = matchData.length
+  const length = index
+  const noCustomizer = !customizer
+
+  if (object == null) {
+    return !length
+  }
+  let data
+  let result
+  object = Object(object)
+  while (index--) {
+    data = matchData[index]
+    if ((noCustomizer && data[2])
+      ? data[1] !== object[data[0]]
+      : !(data[0] in object)
+    ) {
+      return false
+    }
+  }
+  while (++index < length) {
+    data = matchData[index]
+    const key = data[0]
+    const objValue = object[key]
+    const srcValue = data[1]
+
+    if (noCustomizer && data[2]) {
+      if (objValue === undefined && !(key in object)) {
+        return false
+      }
+    } else {
+      const stack = new Stack
+      if (customizer) {
+        result = customizer(objValue, srcValue, key, object, source, stack)
+      }
+      if (!(result === undefined
+        ? baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG, customizer, stack)
+        : result
+      )) {
+        return false
+      }
+    }
+  }
+  return true
+}
+function isMatch(object, source) {
+  return object === source || baseIsMatch(object, source, getMatchData(source))
+}
+
+var object = { 'a': 1, 'b': 2 };
+ 
+isMatch(object, { 'b': 2 });
+// => true
+ 
+isMatch(object, { 'b': 1 });
+// => false
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
