@@ -1,0 +1,86 @@
+# `_.isMatchWith()`
+
+`_.isMatchWith(object, source, [customizer])`
+
+This method is like `_.isMatch` except that it accepts customizer which is invoked to compare values. If customizer returns undefined, comparisons are handled by the method instead. The customizer is invoked with five arguments: (objValue, srcValue, index|key, object, source).
+
+## Arguments
+
+`object (Object)`: The object to inspect.  
+`source (Object)`: The object of property values to match.  
+`[customizer] (Function)`: The function to customize comparisons.  
+
+## Returns
+
+`(boolean)`: Returns `true` if `object` is a match, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isMatchWith = require("lodash/isMatchWith");
+ 
+var object = { 'a': 1, 'b': 2 };
+function isGreeting(value) {
+  return /^h(?:i|ello)$/.test(value);
+}
+ 
+function customizer(objValue, srcValue) {
+  if (isGreeting(objValue) && isGreeting(srcValue)) {
+    return true;
+  }
+}
+ 
+var object = { 'greeting': 'hello' };
+var source = { 'greeting': 'hi' };
+ 
+isMatchWith(object, source, customizer);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function isMatchWith(object, source, customizer) {
+  customizer = typeof customizer === 'function' ? customizer : undefined
+  return baseIsMatch(object, source, getMatchData(source), customizer)
+}
+
+var object = { 'a': 1, 'b': 2 };
+function isGreeting(value) {
+  return /^h(?:i|ello)$/.test(value);
+}
+ 
+function customizer(objValue, srcValue) {
+  if (isGreeting(objValue) && isGreeting(srcValue)) {
+    return true;
+  }
+}
+ 
+var object = { 'greeting': 'hello' };
+var source = { 'greeting': 'hi' };
+ 
+isMatchWith(object, source, customizer);
+// => true
+
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
