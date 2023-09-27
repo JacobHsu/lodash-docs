@@ -1,0 +1,60 @@
+# `_.isNative(value)`
+
+Checks if `value` is a pristine native function.
+
+**Note**: This method can't reliably detect native functions in the presence of the core-js package because core-js circumvents this kind of detection. Despite multiple requests, the core-js maintainer has made it clear: any attempt to fix the detection will be obstructed. As a result, we're left with little choice but to throw an error. Unfortunately, this also affects packages, like babel-polyfill, which rely on core-js.
+
+## Arguments
+
+`value (*)`: The value to check. 
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a native function, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isNative = require("lodash/isNative");
+ 
+isNative(Array.prototype.push);
+// => true
+ 
+// isNative(_);
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function isObject(value) {
+  const type = typeof value
+  return value != null && (type === 'object' || type === 'function')
+}
+
+function isNative(value) {
+  return isObject(value) && reIsNative.test(value)
+}
+
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
