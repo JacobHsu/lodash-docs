@@ -1,0 +1,58 @@
+# `_.isNil(value)`
+
+Checks if `value` is `null` or `undefined`.
+
+## Arguments
+
+`value (*)`: The value to check. 
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is nullish, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isNil = require("lodash/isNil");
+ 
+isNil(null);
+// => true
+ 
+isNil(void 0);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function isNil(value) {
+  return value == null
+}
+
+isNil(null);
+// => true
+ 
+isNil(void 0);
+// => true
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
