@@ -1,0 +1,65 @@
+# `_.isNumber(value)`
+
+Checks if `value` is classified as a `Number` primitive or object.
+
+**Note**: To exclude `Infinity`, `-Infinity`, and NaN, which are classified as numbers, use the `_.isFinite` method.
+
+## Arguments
+
+`value (*)`: The value to check. 
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a number, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isNumber = require("lodash/isNumber");
+ 
+isNumber(3);
+// => true
+ 
+isNumber(Number.MIN_VALUE);
+// => true
+ 
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var isArrayLike = require("npm-lodash/isArrayLike");
+var getTag = require("npm-lodash/getTag");
+
+function isNumber(value) {
+  return typeof value === 'number' ||
+    (isObjectLike(value) && getTag(value) == '[object Number]')
+}
+
+isNumber(3);
+// => true
+ 
+isNumber(Number.MIN_VALUE);
+// => true
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
