@@ -1,0 +1,61 @@
+# `_.isObject(value)`
+
+Checks if value is the `language type` of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String(''))`
+
+
+## Arguments
+
+`value (*)`: The value to check. 
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is an object, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isObject = require("lodash/isObject");
+ 
+isObject({});
+// => true
+ 
+isObject([1, 2, 3]);
+// => true
+ 
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function isObject(value) {
+  const type = typeof value
+  return value != null && (type === 'object' || type === 'function')
+}
+
+isObject({});
+// => true
+ 
+isObject([1, 2, 3]);
+// => true
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
