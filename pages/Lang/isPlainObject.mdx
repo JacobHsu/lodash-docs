@@ -1,0 +1,84 @@
+# `_.isPlainObject(value)`
+
+Checks if `value` is a plain object, that is, an object created by the `Object` constructor or one with a `[[Prototype]]` of `null`.
+
+## Arguments
+
+`value (*)`: The value to check.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a plain object, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isPlainObject = require("lodash/isPlainObject");
+ 
+function Foo() {
+  this.a = 1;
+}
+ 
+isPlainObject(new Foo);
+// => false
+ 
+isPlainObject([1, 2, 3]);
+// => false
+ 
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var getTag = require("npm-lodash/getTag");
+
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+function isPlainObject(value) {
+  if (!isObjectLike(value) || getTag(value) != '[object Object]') {
+    return false
+  }
+  if (Object.getPrototypeOf(value) === null) {
+    return true
+  }
+  let proto = value
+  while (Object.getPrototypeOf(proto) !== null) {
+    proto = Object.getPrototypeOf(proto)
+  }
+  return Object.getPrototypeOf(value) === proto
+}
+
+function Foo() {
+  this.a = 1;
+}
+
+isPlainObject(new Foo);
+// => false
+ 
+isPlainObject([1, 2, 3]);
+// => false
+
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
