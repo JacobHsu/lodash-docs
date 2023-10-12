@@ -1,0 +1,76 @@
+# `_.isRegExp(value)`
+
+Checks if `value` is classified as a `RegExp` object.
+
+## Arguments
+
+`value (*)`: The value to check. 
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a regexp, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isRegExp = require("lodash/isRegExp");
+ 
+isRegExp(/abc/);
+// => true
+ 
+isRegExp('/abc/');
+// => false
+ 
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var getTag = require("npm-lodash/getTag");
+
+function isObjectLike(value) {
+  return typeof value === 'object' && value !== null
+}
+
+const nodeTypes = ((() => {
+  try {
+    const typesHelper = freeModule && freeModule.require && freeModule.require('util').types
+    return typesHelper
+      ? typesHelper
+      : freeProcess && freeProcess.binding && freeProcess.binding('util')
+  } catch (e) {}
+})())
+
+const nodeIsRegExp = nodeTypes && nodeTypes.isRegExp
+
+const isRegExp = nodeIsRegExp
+  ? (value) => nodeIsRegExp(value)
+  : (value) => isObjectLike(value) && getTag(value) == '[object RegExp]'
+
+isRegExp(/abc/);
+// => true
+ 
+isRegExp('/abc/');
+// => false
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
