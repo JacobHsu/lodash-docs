@@ -1,0 +1,66 @@
+# `_.isSafeInteger(value)`
+
+Checks if `value` is a safe integer. An integer is safe if it's an IEEE-754 double precision number which isn't the result of a rounded unsafe integer.
+
+**Note**: This method is based on `Number.isSafeInteger`.
+
+## Arguments
+
+`value (*)`: The value to check. 
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a safe integer, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isSafeInteger = require("lodash/isSafeInteger");
+ 
+isSafeInteger(3);
+// => true
+ 
+isSafeInteger(Number.MIN_VALUE);
+// => false
+ 
+isSafeInteger(Infinity);
+// => false
+ 
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## MDN
+
+he `Number.isSafeInteger()` static method determines whether the provided value is a number that is a safe integer.
+
+export const MDNDemo = () => {
+  var code = `
+function warn(x) {
+  if (Number.isSafeInteger(x)) {
+    return 'Precision safe.';
+  }
+  return 'Precision may be lost!';
+}
+
+console.log(warn(Math.pow(2, 53)));
+// Expected output: "Precision may be lost!"
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<MDNDemo />
+
