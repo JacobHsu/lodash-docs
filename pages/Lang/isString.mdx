@@ -1,0 +1,69 @@
+# `_.isString(value)`
+
+Checks if `value` is classified as a String primitive or object.
+
+## Arguments
+
+`value (*)`: The value to check. 
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a string, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isString = require("lodash/isString");
+ 
+isString('abc');
+// => true
+ 
+isString(1);
+// => false
+ 
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var getTag = require("npm-lodash/getTag");
+
+function isString(value) {
+    const type = typeof value;
+    return (
+        type === 'string' ||
+        (type === 'object' &&
+            value != null &&
+            !Array.isArray(value) &&
+            getTag(value) === '[object String]')
+    );
+}
+
+isString('abc');
+// => true
+ 
+isString(1);
+// => false
+
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
