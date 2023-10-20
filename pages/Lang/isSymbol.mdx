@@ -1,0 +1,65 @@
+# `_.isSymbol(value)`
+
+Checks if `value` is classified as a Symbol primitive or object.
+
+## Arguments
+
+`value (*)`: The value to check. 
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a symbol, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isSymbol = require("lodash/isSymbol");
+ 
+isSymbol(Symbol.iterator);
+// => true
+ 
+isSymbol('abc');
+// => false
+ 
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var getTag = require("npm-lodash/getTag");
+
+function isSymbol(value) {
+    const type = typeof value;
+    return (
+        type === 'symbol' ||
+        (type === 'object' && value != null && getTag(value) === '[object Symbol]')
+    );
+}
+
+isSymbol(Symbol.iterator);
+// => true
+ 
+isSymbol('abc');
+// => false
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
