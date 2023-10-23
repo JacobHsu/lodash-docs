@@ -1,0 +1,79 @@
+# `_.isTypedArray(value)`
+
+Checks if `value` is classified as a typed array.
+
+## Arguments
+
+`value (*)`: The value to check.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is a typed array, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isTypedArray = require("lodash/isTypedArray");
+ 
+isTypedArray(new Uint8Array);
+// => true
+ 
+isTypedArray([]);
+// => false
+ 
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var getTag = require("npm-lodash/getTag");
+
+const reTypedTag = /^\[object (?:Float(?:32|64)|(?:Int|Uint)(?:8|16|32)|Uint8Clamped)Array\]$/;
+
+const nodeTypes = ((() => {
+  try {
+    const typesHelper = freeModule && freeModule.require && freeModule.require('util').types
+    return typesHelper
+      ? typesHelper
+      /* Legacy process.binding('util') for Node.js earlier than v10. */
+      : freeProcess && freeProcess.binding && freeProcess.binding('util')
+  } catch (e) {}
+})())
+
+const nodeIsTypedArray = nodeTypes && nodeTypes.isTypedArray;
+
+function isObjectLike(value) {
+    return typeof value === 'object' && value !== null;
+}
+
+const isTypedArray = nodeIsTypedArray
+    ? (value) => nodeIsTypedArray(value)
+    : (value) => isObjectLike(value) && reTypedTag.test(getTag(value));
+
+isTypedArray(new Uint8Array);
+// => true
+ 
+isTypedArray([]);
+// => false
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
