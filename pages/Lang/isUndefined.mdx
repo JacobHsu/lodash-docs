@@ -1,0 +1,59 @@
+# `_.isUndefined(value)`
+
+Checks if `value` is undefined.
+
+## Arguments
+
+`value (*)`: The value to check. 
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is undefined, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var isUndefined = require("lodash/isUndefined");
+ 
+isUndefined(void 0);
+// => true
+ 
+isUndefined(null);
+// => false
+ 
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function isUndefined(value) {
+    return value === undefined;
+}
+
+isUndefined(void 0);
+// => true
+ 
+isUndefined(null);
+// => false
+`;
+
+return (
+<div>
+<Embed source={code} />
+</div>
+);
+};
+
+<DeepDemo />
+
