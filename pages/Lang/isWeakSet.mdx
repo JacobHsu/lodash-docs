@@ -1,6 +1,6 @@
-# `_.isWeakMap(value)`
+# `_.isWeakSet(value)`
 
-Checks if `value` is classified as a WeakMap object.
+Checks if `value` is classified  as a WeakSet object.
 
 ## Arguments
 
@@ -8,19 +8,19 @@ Checks if `value` is classified as a WeakMap object.
 
 ## Returns
 
-`(boolean)`: Returns `true` if `value` is a weak map, else `false`.
+`(boolean)`: Returns `true` if `value` is a weak set, else `false`.
 
 ## Example
 
 import Embed from "runkit-embed-react";
 
 export const Demo = () => {
-var code = `var isWeakMap = require("lodash/isWeakMap");
+var code = `var isWeakSet = require("lodash/isWeakSet");
  
-isWeakMap(new WeakMap); 
+isWeakSet(new WeakSet);
 // => true
  
-isWeakMap(new Map);
+isWeakSet(new Set);
 // => false
  
 `;
@@ -42,14 +42,14 @@ function isObjectLike(value) {
     return typeof value === 'object' && value !== null;
 }
 
-function isWeakMap(value) {
-    return isObjectLike(value) && getTag(value) === '[object WeakMap]';
+function isWeakSet(value) {
+    return isObjectLike(value) && getTag(value) === '[object WeakSet]';
 }
 
-isWeakMap(new WeakMap); 
+isWeakSet(new WeakSet);
 // => true
  
-isWeakMap(new Map);
+isWeakSet(new Set);
 // => false
 `;
 
