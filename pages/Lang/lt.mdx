@@ -1,0 +1,69 @@
+# `_.lt(value)`
+
+Checks if value is less than other.
+
+## Arguments
+
+`value (*)`: The value to compare.  
+`other (*)`: The other value to compare.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is less than other, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var lt = require("lodash/lt");
+ 
+lt(1, 3);
+// => true
+ 
+lt(3, 3);
+// => false
+ 
+lt(3, 1);
+// => false
+ 
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function lt(value, other) {
+    if (!(typeof value === 'string' && typeof other === 'string')) {
+        value = +value;
+        other = +other;
+    }
+    return value < other;
+}
+
+lt(1, 3);
+// => true
+
+lt(3, 3);
+// => false
+
+lt(3, 1);
+// => false
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); };
+
+<DeepDemo />
