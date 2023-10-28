@@ -1,0 +1,68 @@
+# `_.lte(value)`
+
+Checks if value is less than or equal to other.
+
+## Arguments
+
+`value (*)`: The value to compare.  
+`other (*)`: The other value to compare.
+
+## Returns
+
+`(boolean)`: Returns `true` if `value` is less than or equal to other, else `false`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var lte = require("lodash/lte");
+ 
+lte(1, 3);
+// => true
+ 
+lte(3, 3);
+// => true
+ 
+lte(3, 1);
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function lte(value, other) {
+    if (!(typeof value === 'string' && typeof other === 'string')) {
+        value = +value;
+        other = +other;
+    }
+    return value <= other;
+}
+
+lte(1, 3);
+// => true
+
+lte(3, 3);
+// => true
+
+lte(3, 1);
+// => false
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); };
+
+<DeepDemo />
