@@ -1,0 +1,76 @@
+# `_.toInteger(value)`
+
+Converts value to an integer.  
+
+**Note**: This method is loosely based on ToInteger.
+
+## Arguments
+
+`value (*)`: The value to convert.  
+
+## Returns
+
+`(number)`: Returns the converted integer.  
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var toInteger = require("lodash/toInteger");
+ 
+toInteger(3.2);
+// => 3
+ 
+toInteger(Number.MIN_VALUE);
+// => 0
+ 
+toInteger(Infinity);
+// => 1.7976931348623157e+308
+ 
+toInteger('3.2');
+// => 3
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var toFinite = require("lodash/toFinite");
+function toInteger(value) {
+    const result = toFinite(value);
+    const remainder = result % 1;
+
+    return remainder ? result - remainder : result;
+}
+
+toInteger(3.2);
+// => 3
+ 
+toInteger(Number.MIN_VALUE);
+// => 0
+ 
+toInteger(Infinity);
+// => 1.7976931348623157e+308
+ 
+toInteger('3.2');
+// => 3
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
