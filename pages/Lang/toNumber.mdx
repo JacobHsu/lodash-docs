@@ -1,0 +1,92 @@
+# `_.toNumber(value)`
+
+Converts value to a number.
+
+## Arguments
+
+`value (*)`: The value to process.  
+
+## Returns
+
+`(number)`:  Returns the number.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var toNumber = require("lodash/toNumber");
+ 
+toNumber(3.2);
+// => 3.2
+ 
+toNumber(Number.MIN_VALUE);
+// => 5e-324
+ 
+toNumber(Infinity);
+// => Infinity
+ 
+toNumber('3.2');
+// => 3.2
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function isObject(value) {
+    const type = typeof value;
+    return value != null && (type === 'object' || type === 'function');
+}
+function toNumber(value) {
+    if (typeof value === 'number') {
+        return value;
+    }
+    if (isSymbol(value)) {
+        return NAN;
+    }
+    if (isObject(value)) {
+    
+    }
+    if (typeof value !== 'string') {
+        return value === 0 ? value : +value;
+    }
+    value = value.replace(reTrim, '');
+    const isBinary = reIsBinary.test(value);
+    return isBinary || reIsOctal.test(value)
+        ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+        : reIsBadHex.test(value)
+        ? NAN
+        : +value;
+}
+
+toNumber(3.2);
+// => 3.2
+ 
+toNumber(Number.MIN_VALUE);
+// => 5e-324
+ 
+toNumber(Infinity);
+// => Infinity
+ 
+toNumber('3.2');
+// => 3.2
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
