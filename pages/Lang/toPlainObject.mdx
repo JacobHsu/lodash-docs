@@ -1,0 +1,66 @@
+# `_.toPlainObject(value)`
+
+Converts value to a plain object flattening inherited enumerable string keyed properties of value to own properties of the plain object.
+
+## Arguments
+
+`value (*)`: The value to convert.
+
+## Returns
+
+`(Object)`:  Returns the converted plain object.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var toPlainObject = require("lodash/toPlainObject");
+var assign = require("lodash/assign");
+ 
+assign({ 'a': 1 }, new Foo);
+// => { 'a': 1, 'b': 2 }
+ 
+assign({ 'a': 1 }, toPlainObject(new Foo));
+// => { 'a': 1, 'b': 2, 'c': 3 }
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var assign = require("lodash/assign");
+
+function toPlainObject(value) {
+    value = Object(value);
+    const result = {};
+    for (const key in value) {
+        result[key] = value[key];
+    }
+    return result;
+}
+
+assign({ 'a': 1 }, new Foo);
+// => { 'a': 1, 'b': 2 }
+ 
+assign({ 'a': 1 }, toPlainObject(new Foo));
+// => { 'a': 1, 'b': 2, 'c': 3 }
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
