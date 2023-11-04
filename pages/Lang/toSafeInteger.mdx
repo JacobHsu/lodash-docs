@@ -1,0 +1,81 @@
+# `_.toSafeInteger(value)`
+
+Converts value to a safe integer. A safe integer can be compared and represented correctly.
+
+## Arguments
+
+`value (*)`: The value to convert.
+
+## Returns
+
+`(number)`: Returns the converted integer.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var toSafeInteger = require("lodash/toSafeInteger");
+toSafeInteger(3.2);
+// => 3
+ 
+toSafeInteger(Number.MIN_VALUE);
+// => 0
+ 
+toSafeInteger(Infinity);
+// => 9007199254740991
+ 
+toSafeInteger('3.2');
+// => 3
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var toInteger = require("lodash/toInteger");
+const MAX_SAFE_INTEGER = 9007199254740991; // 2^53 - 1  64 位中，有 53 位用於表示整數部分
+function toSafeInteger(value) {
+    if (!value) {
+        return value === 0 ? value : 0;
+    }
+    value = toInteger(value);
+    if (value < -MAX_SAFE_INTEGER) {
+        return -MAX_SAFE_INTEGER;
+    }
+    if (value > MAX_SAFE_INTEGER) {
+        return MAX_SAFE_INTEGER;
+    }
+    return value;
+}
+
+toSafeInteger(3.2);
+// => 3
+ 
+toSafeInteger(Number.MIN_VALUE);
+// => 0
+ 
+toSafeInteger(Infinity);
+// => 9007199254740991
+ 
+toSafeInteger('3.2');
+// => 3
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
