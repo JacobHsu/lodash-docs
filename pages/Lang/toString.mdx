@@ -1,0 +1,86 @@
+# `_.toString(value)`
+
+Converts value to a string. An empty string is returned for null and undefined values. The sign of -0 is preserved.
+
+## Arguments
+
+`value (*)`: The value to convert.
+
+## Returns
+
+`(string)`: Returns the converted string.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var toString = require("lodash/toString");
+toString(null);
+// => ''
+ 
+toString(-0);
+// => '-0'
+ 
+toString([1, 2, 3]);
+// => '1,2,3'
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+// https://github.com/HeftyKoo/pocket-lodash/blob/master/toString.md
+var getTag = require("npm-lodash/getTag");
+function isSymbol(value) {
+    const type = typeof value;
+    return (
+        type === 'symbol' ||
+        (type === 'object' && value != null && getTag(value) === '[object Symbol]')
+    );
+}
+function toString(value) {
+    if (value == null) {
+        return '';
+    }
+    // Exit early for strings to avoid a performance hit in some environments.
+    if (typeof value === 'string') {
+        return value;
+    }
+    if (Array.isArray(value)) {
+   
+    }
+    if (isSymbol(value)) {
+        return value.toString();
+    }
+
+    // return result === '0' && 1 / value === -INFINITY ? '-0' : result;
+}
+
+toString(null);
+// => ''
+ 
+toString(-0);
+// => '-0'
+ 
+toString([1, 2, 3]);
+// => '1,2,3'
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
