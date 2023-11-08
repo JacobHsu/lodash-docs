@@ -1,0 +1,81 @@
+# `_.divide(dividend, divisor)`
+
+Divide two numbers.
+
+## Arguments
+
+`dividend (number)`: The first number in a division.  
+`divisor (number)`: The second number in a division.
+
+## Returns
+
+`(number)`: Returns the quotient.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var divide = require("lodash/divide");
+divide(6, 4);
+// => 1.5
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function baseToNumber(value) {
+  if (typeof value === 'number') {
+    return value
+  }
+  if (isSymbol(value)) {
+    return NAN
+  }
+  return +value
+}
+function createMathOperation(operator, defaultValue) {
+  return (value, other) => {
+    if (value === undefined && other === undefined) {
+      return defaultValue
+    }
+    if (value !== undefined && other === undefined) {
+      return value
+    }
+    if (other !== undefined && value === undefined) {
+      return other
+    }
+    if (typeof value === 'string' || typeof other === 'string') {
+      value = baseToString(value)
+      other = baseToString(other)
+    }
+    else {
+      value = baseToNumber(value)
+      other = baseToNumber(other)
+    }
+    return operator(value, other)
+  }
+}
+
+const divide = createMathOperation((dividend, divisor) => dividend / divisor, 1);
+divide(6, 4);
+// => 1.5
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
