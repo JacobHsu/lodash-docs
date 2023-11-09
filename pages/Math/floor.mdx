@@ -1,0 +1,72 @@
+# `_.floor(number, [precision=0])`
+
+Computes number rounded down to precision.
+
+## Arguments
+
+`number (number)`: The number to round down.  
+`[precision=0] (number)`: The precision to round down to.
+
+## Returns
+
+`(number)`: Returns the rounded down number.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var floor = require("lodash/floor");
+floor(4.006);
+// => 4
+ 
+floor(0.046, 2);
+// => 0.04
+ 
+floor(4060, -2);
+// => 4000
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function createRound(methodName) {
+  const func = Math[methodName]
+  return (number, precision) => {
+    precision = precision == null ? 0 : (precision >= 0 ? Math.min(precision, 292) : Math.max(precision, -292))
+    if (precision) {
+      // https://github.com/lodash/lodash/blob/main/src/.internal/createRound.ts
+    }
+    return func(number)
+  }
+}
+const floor = createRound('floor');
+
+floor(4.006);
+// => 4
+ 
+floor(0.046, 2);
+// => 0.04
+ 
+floor(4060, -2);
+// => 4000
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
