@@ -1,0 +1,58 @@
+# `_.max(array)`
+
+Computes the maximum value of array. If array is empty or falsey, undefined is returned.
+
+## Arguments
+
+`array (Array)`: The array to iterate over.
+
+## Returns
+
+`(*)`: Returns the maximum value.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var max = require("lodash/max");
+max([4, 2, 8, 6]);
+// => 8
+ 
+max([]);
+// => undefined
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+console.log(Math.max(1, 3, 2));
+// Expected output: 3
+
+console.log(Math.max(-1, -3, -2));
+// Expected output: -1
+
+const array1 = [1, 3, 2];
+
+console.log(Math.max(...array1));
+// Expected output: 3
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
