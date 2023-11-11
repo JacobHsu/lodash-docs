@@ -1,0 +1,85 @@
+# `_.maxBy(array)`
+
+This method is like _.max except that it accepts iteratee which is invoked for each element in array to generate the criterion by which the value is ranked. The iteratee is invoked with one argument: (value).
+
+## Arguments
+
+`array (Array)`: The array to iterate over.  
+`[iteratee=_.identity] (Function)`: The iteratee invoked per element.
+
+## Returns
+
+`(*)`: Returns the maximum value.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var maxBy = require("lodash/maxBy");
+var objects = [{ 'n': 1 }, { 'n': 2 }];
+ 
+maxBy(objects, function(o) { return o.n; });
+// => { 'n': 2 }
+ 
+maxBy(objects, 'n');
+// => { 'n': 2 }
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var getTag = require("npm-lodash/getTag");
+function isSymbol(value) {
+    const type = typeof value;
+    return (
+        type === 'symbol' ||
+        (type === 'object' && value != null && getTag(value) === '[object Symbol]')
+    );
+}
+function maxBy(array, iteratee) {
+    let result;
+    if (array == null) {
+        return result;
+    }
+    let computed;
+    for (const value of array) {
+        const current = iteratee(value);
+
+        if (
+            current != null &&
+            (computed === undefined
+                ? current === current && !isSymbol(current)
+                : current > computed)
+        ) {
+            computed = current;
+            result = value;
+        }
+    }
+    return result;
+}
+var objects = [{ 'n': 1 }, { 'n': 2 }];
+ 
+maxBy(objects, function(o) { return o.n; });
+// => { 'n': 2 }
+
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
