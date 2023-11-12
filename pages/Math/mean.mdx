@@ -1,0 +1,66 @@
+# `_.mean(array)`
+
+Computes the mean of the values in array.
+
+## Arguments
+
+`array (Array)`: The array to iterate over.
+
+## Returns
+
+`(number)`: Returns the mean.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var mean = require("lodash/mean");
+mean([4, 2, 8, 6]);
+// => 5
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function baseSum(array, iteratee) {
+  let result
+
+  for (const value of array) {
+    const current = iteratee(value)
+    if (current !== undefined) {
+      result = result === undefined ? current : (result + current)
+    }
+  }
+  return result
+}
+function meanBy(array, iteratee) {
+    const length = array == null ? 0 : array.length;
+    return length ? baseSum(array, iteratee) / length : NAN;
+}
+function mean(array) {
+    return meanBy(array, (value) => value);
+}
+mean([4, 2, 8, 6]);
+// => 5
+
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
