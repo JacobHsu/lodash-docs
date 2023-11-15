@@ -1,0 +1,86 @@
+# `_.minBy(array, [iteratee=_.identity])`
+
+This method is like `_.min` except that it accepts iteratee which is invoked for each element in array to generate the criterion by which the value is ranked. The iteratee is invoked with one argument: (value).
+
+## Arguments
+
+`array (Array)`: The array to iterate over.  
+`[iteratee=_.identity] (Function)`: The iteratee invoked per element.
+
+## Returns
+
+`(*)`: Returns the minimum value.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var minBy = require("lodash/minBy");
+var objects = [{ 'n': 1 }, { 'n': 2 }];
+ 
+minBy(objects, function(o) { return o.n; });
+// => { 'n': 1 }
+ 
+// The _.property iteratee shorthand.
+minBy(objects, 'n');
+// => { 'n': 1 }
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var getTag = require("npm-lodash/getTag");
+function isSymbol(value) {
+    const type = typeof value;
+    return (
+        type === 'symbol' ||
+        (type === 'object' && value != null && getTag(value) === '[object Symbol]')
+    );
+}
+function minBy(array, iteratee) {
+    let result;
+    if (array == null) {
+        return result;
+    }
+    let computed;
+    for (const value of array) {
+        const current = iteratee(value);
+
+        if (
+            current != null &&
+            (computed === undefined
+                ? current === current && !isSymbol(current)
+                : current < computed)
+        ) {
+            computed = current;
+            result = value;
+        }
+    }
+    return result;
+}
+
+var objects = [{ 'n': 1 }, { 'n': 2 }];
+ 
+minBy(objects, function(o) { return o.n; });
+// => { 'n': 1 }
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
