@@ -1,0 +1,61 @@
+# `_.round(number, [precision=0])`
+
+Computes number rounded to precision.
+
+## Arguments
+
+`number (number)`: The number to round.
+`[precision=0] (number)`: The precision to round to.
+
+## Returns
+
+`(number)`: Returns the rounded number.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var round = require("lodash/round");
+round(4.006);
+// => 4
+ 
+round(4.006, 2);
+// => 4.01
+ 
+round(4060, -2);
+// => 4100
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+// https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Math/round
+// Returns the value 20
+x = Math.round(20.49);
+
+// Returns the value 21
+x = Math.round(20.5);
+
+// Returns the value -20
+x = Math.round(-20.5);
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
