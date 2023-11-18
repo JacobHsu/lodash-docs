@@ -1,0 +1,82 @@
+# `_.subtract(minuend, subtrahend)`
+
+Subtract two numbers.
+
+## Arguments
+
+`number (number)`: The first number in a subtraction.  
+`subtrahend (number)`: The second number in a subtraction.
+
+## Returns
+
+`(number)`: Returns the difference.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var subtract = require("lodash/subtract");
+subtract(6, 4);
+// => 2
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var isSymbol = require("lodash/isSymbol");
+function baseToNumber(value) {
+  if (typeof value === 'number') {
+    return value
+  }
+  if (isSymbol(value)) {
+    return NAN
+  }
+  return +value
+} 
+function createMathOperation(operator, defaultValue) {
+  return (value, other) => {
+    if (value === undefined && other === undefined) {
+      return defaultValue
+    }
+    if (value !== undefined && other === undefined) {
+      return value
+    }
+    if (other !== undefined && value === undefined) {
+      return other
+    }
+    if (typeof value === 'string' || typeof other === 'string') {
+      // value = baseToString(value)
+      // other = baseToString(other)
+    }
+    else {
+      value = baseToNumber(value)
+      other = baseToNumber(other)
+    }
+    return operator(value, other)
+  }
+}
+const subtract = createMathOperation((minuend, subtrahend) => minuend - subtrahend, 0);
+
+subtract(6, 4);
+// => 2
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
