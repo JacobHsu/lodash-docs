@@ -1,0 +1,72 @@
+# `_.sumBy()`
+
+`_.sumBy(array, [iteratee=_.identity])`
+
+This method is like _.sum except that it accepts iteratee which is invoked for each element in array to generate the value to be summed. The iteratee is invoked with one argument: (value).
+
+## Arguments
+
+`array (Array)`: The array to iterate over.  
+`[iteratee=_.identity] (Function)`: The iteratee invoked per element.
+
+## Returns
+
+`(number)`: Returns the sum.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var sumBy = require("lodash/sumBy");
+var objects = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }];
+ 
+sumBy(objects, function(o) { return o.n; });
+// => 20
+ 
+// The _.property iteratee shorthand.
+sumBy(objects, 'n');
+// => 20
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function baseSum(array, iteratee) {
+  let result
+
+  for (const value of array) {
+    const current = iteratee(value)
+    if (current !== undefined) {
+      result = result === undefined ? current : (result + current)
+    }
+  }
+  return result
+}
+
+function sumBy(array, iteratee) {
+    return array != null && array.length ? baseSum(array, iteratee) : 0;
+}
+var objects = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }];
+sumBy(objects, function(o) { return o.n; });
+// => 20
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
