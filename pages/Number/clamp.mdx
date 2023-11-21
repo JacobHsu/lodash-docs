@@ -1,0 +1,69 @@
+# `_.clamp()`
+
+`_.clamp(number, [lower], upper)`
+
+Clamps number within the inclusive lower and upper bounds.
+
+## Arguments
+
+`number (number)`: The number to clamp.  
+`[lower] (number)`: The lower bound.  
+`upper (number)`: The upper bound.
+
+## Returns
+
+`(number)`: Returns the clamped number.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var clamp = require("lodash/clamp");
+clamp(-10, -5, 5);
+// => -5
+ 
+clamp(10, -5, 5);
+// => 5
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function clamp(number, lower, upper) {
+    number = +number;
+    lower = +lower;
+    upper = +upper;
+    lower = lower === lower ? lower : 0;
+    upper = upper === upper ? upper : 0;
+    if (number === number) {
+        number = number <= upper ? number : upper;
+        number = number >= lower ? number : lower;
+    }
+    return number;
+}
+clamp(-10, -5, 5);
+// => -5
+ 
+clamp(10, -5, 5);
+// => 5
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
