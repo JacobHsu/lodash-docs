@@ -18,7 +18,8 @@ This is a template for creating documentation with [Nextra](https://nextra.site)
 [RunKit + npm](https://npm.runkit.com/lodash)  
 [lodash](https://lodash.com/)  
 [lodashjs](https://www.lodashjs.com/)  
-[pocket-lodash](https://github.com/HeftyKoo/pocket-lodash)
+[pocket-lodash](https://github.com/HeftyKoo/pocket-lodash)  
+[lodash github](https://github.com/lodash/lodash)  
 
 ## Note
 

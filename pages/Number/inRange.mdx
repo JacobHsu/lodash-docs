@@ -1,0 +1,83 @@
+# `_.inRange()`
+
+`_.inRange(number, [start=0], end)`
+
+Checks if n is between start and up to, but not including, end. If end is not specified, it's set to start with start then set to 0. If start is greater than end the params are swapped to support negative ranges.
+
+
+## Arguments
+
+`number (number)`: The number to check.  
+`[start=0] (number)`: The start of the range.  
+`end (number)`: The end of the range.  
+
+## Returns
+
+`(boolean)`: Returns true if number is in the range, else false.
+
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var inRange = require("lodash/inRange");
+
+inRange(3, 2, 4);
+// => true
+ 
+inRange(4, 8);
+// => true
+ 
+inRange(4, 2);
+// => false
+ 
+inRange(2, 2);
+// => false
+ 
+inRange(1.2, 2);
+// => true
+ 
+inRange(5.2, 4);
+// => false
+ 
+inRange(-3, -2, -6);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function baseInRange(number, start, end) {
+  return number >= Math.min(start, end) && number < Math.max(start, end)
+}
+function inRange(number, start, end) {
+    if (end === undefined) {
+        end = start;
+        start = 0;
+    }
+    return baseInRange(+number, +start, +end);
+}
+
+inRange(3, 2, 4);
+// => true
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
