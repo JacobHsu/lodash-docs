@@ -1,0 +1,62 @@
+# `_.assign(object, [sources])`
+
+Assigns own enumerable string keyed properties of source objects to the destination object. Source objects are applied from left to right. Subsequent sources overwrite property assignments of previous sources.
+
+**Note**: This method mutates object and is loosely based on Object.assign.
+
+## Arguments
+
+`object (Object)`: The destination object.  
+`[sources] (...Object)`: The source objects. 
+
+## Returns
+
+`(Object)`: Returns object.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var assign = require("lodash/assign");
+function Foo() {
+  this.a = 1;
+}
+ 
+function Bar() {
+  this.c = 3;
+}
+ 
+Foo.prototype.b = 2;
+Bar.prototype.d = 4;
+ 
+assign({ 'a': 0 }, new Foo, new Bar);
+// => { 'a': 1, 'c': 3 }
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var obj = { a: 1 };
+var copy = Object.assign({}, obj);
+console.log(copy); // { a: 1 }
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
