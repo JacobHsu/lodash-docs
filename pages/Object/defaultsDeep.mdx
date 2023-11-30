@@ -1,0 +1,63 @@
+# `_.defaultsDeep(object, [sources])`
+
+This method is like `_.defaults` except that it recursively assigns default properties.
+
+**Note**: This method mutates object.
+
+## Arguments
+
+`object (Object)`: The destination object.  
+`[sources] (...Object)`: The source objects.
+
+## Returns
+
+`(Object)`: Returns object.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var defaultsDeep = require("lodash/defaultsDeep");
+defaultsDeep({ 'a': { 'b': 2 } }, { 'a': { 'b': 1, 'c': 3 } });
+// => { 'a': { 'b': 2, 'c': 3 } }
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function customDefaultsMerge(objValue, srcValue, key, object, source, stack) {
+  if (isObject(objValue) && isObject(srcValue)) {
+    // Recursively merge objects and arrays (susceptible to call stack limits).
+    stack.set(srcValue, objValue)
+    baseMerge(objValue, srcValue, undefined, customDefaultsMerge, stack)
+    stack['delete'](srcValue)
+  }
+  return objValue
+}
+function defaultsDeep(...args) {
+    args.push(undefined, customDefaultsMerge);
+    return mergeWith.apply(undefined, args);
+}
+defaultsDeep({ 'a': { 'b': 2 } }, { 'a': { 'b': 1, 'c': 3 } });
+// => { 'a': { 'b': 2, 'c': 3 } }
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
