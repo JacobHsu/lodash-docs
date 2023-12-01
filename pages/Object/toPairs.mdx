@@ -1,0 +1,39 @@
+# `_.toPairs(object)`
+
+Creates an array of own enumerable string keyed-value pairs for object which can be consumed by _.fromPairs. If object is a map or set, its entries are returned.
+
+
+## Arguments
+
+`object (Object)`: The object to query. 
+
+## Returns
+
+`(Object)`: Returns the key-value pairs.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var toPairs = require("lodash/toPairs");
+function Foo() {
+  this.a = 1;
+  this.b = 2;
+}
+ 
+Foo.prototype.c = 3;
+ 
+toPairs(new Foo);
+// => [['a', 1], ['b', 2]] (iteration order is not guaranteed)
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
