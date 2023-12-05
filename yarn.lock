@@ -257,6 +257,15 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
+"@types/react@18.2.42":
+  version "18.2.42"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.42.tgz#6f6b11a904f6d96dda3c2920328a97011a00aba7"
+  integrity sha512-c1zEr96MjakLYus/wPnuWDo1/zErfdU9rNsIGmE+NV71nx88FG9Ttgo5dqorXTu/LImX2f63WBP986gJkMPNbA==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
 "@types/react@>=16":
   version "18.2.8"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.8.tgz#a77dcffe4e9af148ca4aa8000c51a1e8ed99e2c8"
@@ -1413,10 +1422,10 @@ nextra@2.0.1:
     title "^3.5.3"
     unist-util-visit "^4.1.1"
 
-npm-lodash@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/npm-lodash/-/npm-lodash-1.0.4.tgz#9d35d0d66df5da26bc8a8ae16c3a50ea06a93f46"
-  integrity sha512-Mvfh68Uk4rRs6nTmEcbYNz7jJ/mg56P9ZogCZ4zugz1AhBOE5ixCyfR7k7O9yDmIFQ51bal9O1rk4w4voBJEgg==
+npm-lodash@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/npm-lodash/-/npm-lodash-1.0.8.tgz#ddbf55704bc9ead31b5d74975c2523151db89485"
+  integrity sha512-tKVQJizdVqNeqa03Ygu1DAOPV2M0wKTKyKRokT6fAHNYMnkFy51M8Boafxd6XvgbQkqRNNAQorlNSiDJF6aCig==
 
 npm-run-path@^2.0.0:
   version "2.0.2"

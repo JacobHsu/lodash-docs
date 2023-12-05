@@ -1,0 +1,41 @@
+# `_.forOwn(object, [iteratee=_.identity])`
+
+Iterates over own enumerable string keyed properties of an object and invokes iteratee for each property. The iteratee is invoked with three arguments: (value, key, object). Iteratee functions may exit iteration early by explicitly returning false.
+
+## Arguments
+
+`object (Object)`: The object to iterate over.  
+`[iteratee=_.identity] (Function)`: The function invoked per iteration.
+
+## Returns
+
+`(Object)`: Returns object.  
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var forOwn = require("lodash/forOwn");
+function Foo() {
+  this.a = 1;
+  this.b = 2;
+}
+ 
+Foo.prototype.c = 3;
+ 
+forOwn(new Foo, function(value, key) {
+  console.log(key);
+});
+// => Logs 'a' then 'b' (iteration order is not guaranteed).
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
