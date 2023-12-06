@@ -1,0 +1,74 @@
+# `_.functions(object)`
+
+Creates an array of function property names from own enumerable properties of object.
+
+## Arguments
+
+`object (Object)`: The object to inspect.
+
+## Returns
+
+`(Array)`: Returns the function names.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var functions = require("lodash/functions");
+var constant = require("lodash/constant");
+  
+function Foo() {
+  this.a = constant('a');
+  this.b = constant('b');
+}
+ 
+Foo.prototype.c = constant('c');
+ 
+functions(new Foo);
+// => ['a', 'b']
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var constant = require("lodash/constant");
+
+function functions(object) {
+    if (object == null) {
+        return [];
+    }
+    return Object.keys(object).filter((key) => typeof object[key] === 'function');
+}
+
+function Foo() {
+  this.a = constant('a');
+  this.b = constant('b');
+}
+ 
+Foo.prototype.c = constant('c');
+ 
+functions(new Foo);
+// => ['a', 'b']
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
+
+
