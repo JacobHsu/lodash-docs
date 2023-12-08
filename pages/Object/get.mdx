@@ -1,0 +1,81 @@
+# `_.get(object, path, [defaultValue])`
+
+Gets the value at path of object. If the resolved value is undefined, the defaultValue is returned in its place.
+
+## Arguments
+
+`object (Object)`: The object to query.  
+`path (Array|string)`: The path of the property to get.  
+`[defaultValue] (*)`: The value returned for undefined resolved values.
+
+## Returns
+
+`(*)`: Returns the resolved value.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var get = require("lodash/get");
+var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ 
+get(object, 'a[0].b.c');
+// => 3
+ 
+get(object, ['a', '0', 'b', 'c']);
+// => 3
+ 
+get(object, 'a.b.c', 'default');
+// => 'default'
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function baseGet(object, path) {
+  // path = castPath(path, object)
+
+  let index = 0
+  // const length = path.length
+
+  // while (object != null && index < length) {
+  //   object = object[toKey(path[index++])]
+  // }
+  return (index && index === length) ? object : undefined
+}
+
+function get(object, path, defaultValue) {
+    const result = object == null ? undefined : baseGet(object, path);
+    return result === undefined ? defaultValue : result;
+}
+var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ 
+get(object, 'a[0].b.c');
+// => 3
+ 
+// get(object, ['a', '0', 'b', 'c']);
+// => 3
+ 
+get(object, 'a.b.c', 'default');
+// => 'default'
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
