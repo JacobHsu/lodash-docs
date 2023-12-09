@@ -1,0 +1,49 @@
+# `_.findKey()`
+
+`findKey(object, [predicate=_.identity])`
+
+This method is like `_.find` except that it returns the key of the first element predicate returns truthy for instead of the element itself.
+
+## Arguments
+
+`object (Object)`: The object to inspect.  
+`[predicate=_.identity] (Function)`: The function invoked per iteration.
+
+## Returns
+
+`(*)`: Returns the key of the matched element, else undefined.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var findKey = require("lodash/findKey");
+var users = {
+  'barney':  { 'age': 36, 'active': true },
+  'fred':    { 'age': 40, 'active': false },
+  'pebbles': { 'age': 1,  'active': true }
+};
+ 
+findKey(users, function(o) { return o.age < 40; });
+// => 'barney' (iteration order is not guaranteed)
+ 
+findKey(users, { 'age': 1, 'active': true });
+// => 'pebbles'
+ 
+findKey(users, ['active', false]);
+// => 'fred'
+ 
+findKey(users, 'active');
+// => 'barney'
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
