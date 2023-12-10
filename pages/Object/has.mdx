@@ -1,0 +1,78 @@
+# `_.has(object, path)`
+
+Checks if path is a direct property of object.
+
+## Arguments
+
+`object (Object)`: The object to query.  
+`path (Array|string)`: The path to check.
+
+## Returns
+
+`(boolean)`: Returns true if path exists, else false.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var has = require("lodash/has");
+var create = require("lodash/create");
+var object = { 'a': { 'b': 2 } };
+var other = create({ 'a': create({ 'b': 2 }) });
+ 
+has(object, 'a');
+// => true
+ 
+has(object, 'a.b');
+// => true
+ 
+has(object, ['a', 'b']);
+// => true
+ 
+has(other, 'a');
+// => false
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var create = require("lodash/create");
+var object = { 'a': { 'b': 2 } };
+var other = create({ 'a': create({ 'b': 2 }) });
+
+function has(object, key) {
+    return object != null && hasOwnProperty.call(object, key);
+}
+ 
+has(object, 'a');
+// => true
+ 
+has(object, 'a.b');
+// => true
+ 
+has(object, ['a', 'b']);
+// => true
+ 
+has(other, 'a');
+// => false
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
