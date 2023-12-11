@@ -1,0 +1,63 @@
+# `_.invert(object)`
+
+Creates an object composed of the inverted keys and values of object. If object contains duplicate values, subsequent values overwrite property assignments of previous values.
+
+## Arguments
+
+`object (Object)`: The object to invert. 
+
+## Returns
+
+`(Object)`: Returns the new inverted object.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var invert = require("lodash/invert");
+var object = { 'a': 1, 'b': 2, 'c': 1 };
+ 
+invert(object);
+// => { '1': 'c', '2': 'b' }
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+const toString = Object.prototype.toString;  
+function invert(object) {
+    const result = {};
+    Object.keys(object).forEach((key) => {
+        let value = object[key];
+        if (value != null && typeof value.toString !== 'function') {
+            value = toString.call(value);
+        }
+        result[value] = key;
+    });
+    return result;
+}
+var object = { 'a': 1, 'b': 2, 'c': 1 };
+ 
+invert(object);
+// => { '1': 'c', '2': 'b' }
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
