@@ -61,3 +61,16 @@ return (
 };
 
 <DeepDemo />
+
+
+
+淺談`Object.prototype.toString.call()`方法
+
+在JavaScript裡使用`typeof`判斷資料類型，只能區分 **基本類型** ，即：
+number、string、undefined、boolean、object。
+
+對於null、array、function、object來說，使用typeof都會統一返回 **object字串**。
+要想區分對象、陣列、函數、單純使用typeof是不行的。
+
+在JS中，可以通過Object.prototype.toString方法，判斷某個對象之屬於哪種內建類型。
+分為null、string、boolean、number、undefined、array、function、object、date、math。
