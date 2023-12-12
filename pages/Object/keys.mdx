@@ -1,0 +1,101 @@
+# `_.keys(object)`
+
+Creates an array of the own enumerable property names of object.
+
+**Note**: Non-object values are coerced to objects. See the ES spec for more details.
+
+## Arguments
+
+`object (Object)`: The object to query.
+
+## Returns
+
+`(Array)`: Returns the array of property names.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var keys = require("lodash/keys");
+function Foo() {
+  this.a = 1;
+  this.b = 2;
+}
+ 
+Foo.prototype.c = 3;
+ 
+keys(new Foo);
+// => ['a', 'b'] (iteration order is not guaranteed)
+ 
+keys('hi');
+// => ['0', '1']
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var isArrayLike = require("npm-lodash/isArrayLike");
+
+function arrayLikeKeys(value, inherited) {
+  const isArr = Array.isArray(value)
+  const isArg = !isArr && isArguments(value)
+  const isBuff = !isArr && !isArg && isBuffer(value)
+  const isType = !isArr && !isArg && !isBuff && isTypedArray(value)
+  const skipIndexes = isArr || isArg || isBuff || isType
+  const length = value.length
+  const result = new Array(skipIndexes ? length : 0)
+  let index = skipIndexes ? -1 : length
+  while (++index < length) {
+    // https://github.com/lodash/lodash/blob/main/src/.internal/arrayLikeKeys.ts
+  }
+  for (const key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) &&
+        !(skipIndexes && (
+
+          (key === 'length' ||
+           // Skip index properties.
+           isIndex(key, length))
+        ))) {
+      result.push(key)
+    }
+  }
+  return result
+}
+
+function keys(object) {
+    return isArrayLike(object) ? arrayLikeKeys(object) : Object.keys(Object(object));
+}
+
+function Foo() {
+  this.a = 1;
+  this.b = 2;
+}
+ 
+Foo.prototype.c = 3;
+ 
+keys(new Foo);
+// => ['a', 'b'] (iteration order is not guaranteed)
+ 
+keys('hi');
+// => ['0', '1']
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
