@@ -1,0 +1,64 @@
+# `_.omit(object, [paths])`
+
+The opposite of `_.pick`; this method creates an object composed of the own and inherited enumerable property paths of object that are not omitted.
+
+**Note**: This method is considerably slower than `_.pick`.
+
+## Arguments
+
+`object (Object)`: The source object.  
+`[paths] (...(string|string[]))`: The property paths to omit.  
+
+## Returns
+
+`(Object)`: Returns the new object.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var omit = require("lodash/omit");
+var object = { 'a': 1, 'b': '2', 'c': 3 };
+ 
+omit(object, ['a', 'c']);
+// => { 'b': '2' }
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function omit(obj, fields) {
+  // eslint-disable-next-line prefer-object-spread
+  const shallowCopy = Object.assign({}, obj);
+  for (let i = 0; i < fields.length; i += 1) {
+    const key = fields[i];
+    delete shallowCopy[key];
+  }
+  return shallowCopy;
+}
+
+var object = { 'a': 1, 'b': '2', 'c': 3 };
+ 
+omit(object, ['a', 'c']);
+// => { 'b': '2' }
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
