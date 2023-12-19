@@ -1,0 +1,80 @@
+# `_.pick(object, [paths])`
+
+Creates an object composed of the picked `object` properties.
+
+## Arguments
+
+`object (Object)`: The source object.  
+`[paths] (...(string|string[]))`: The property paths to omit.  
+
+## Returns
+
+`(Object)`: Returns the new object.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var pick = require("lodash/pick");
+var object = { 'a': 1, 'b': '2', 'c': 3 };
+ 
+pick(object, ['a', 'c']);
+// => { 'a': 1, 'c': 3 }
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+
+function basePickBy(object, paths, predicate) {
+  let index = -1
+  const length = paths.length
+  const result = {}
+
+  while (++index < length) {
+    const path = paths[index]
+    const value = baseGet(object, path)
+    if (predicate(value, path)) {
+      baseSet(result, castPath(path, object), value)
+    }
+  }
+  return result
+}
+ 
+function hasIn(object, key) {
+    return object != null && key in Object(object);
+}
+
+function basePick(object, paths) {
+  return basePickBy(object, paths, (value, path) => hasIn(object, path))
+}
+
+function pick(object, ...paths) {
+    return object == null ? {} : basePick(object, paths);
+}
+
+var object = { 'a': 1, 'b': '2', 'c': 3 };
+ 
+pick(object, ['a', 'c']);
+// => { 'a': 1, 'c': 3 }
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
