@@ -1,0 +1,105 @@
+# `_.set(object, path, value)`
+
+Sets the value at path of object. If a portion of path doesn't exist, it's created. Arrays are created for missing index properties while objects are created for all other missing properties. Use `_.setWith` to customize path creation.
+
+**Note**: This method mutates `object`.
+
+## Arguments
+
+`object (Object)`: The object to modify.  
+`path (Array|string)`: The path of the property to set.  
+`value (*)`: The value to set.
+
+## Returns
+
+`(Object)`: Returns `object`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var set = require("lodash/set");
+var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ 
+set(object, 'a[0].b.c', 4);
+console.log(object.a[0].b.c);
+// => 4
+ 
+set(object, ['x', '0', 'y', 'z'], 5);
+console.log(object.x[0].y.z);
+// => 5
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function castPath(value, object) {
+  if (Array.isArray(value)) {
+    return value
+  }
+  return isKey(value, object) ? [value] : stringToPath(value)
+}
+function baseSet(object, path, value, customizer) {
+  if (!isObject(object)) {
+    return object
+  }
+  path = castPath(path, object)
+
+  const length = path.length
+  const lastIndex = length - 1
+
+  let index = -1
+  let nested = object
+
+  while (nested != null && ++index < length) {
+    const key = toKey(path[index])
+    let newValue = value
+
+    if (index !== lastIndex) {
+      const objValue = nested[key]
+      newValue = customizer ? customizer(objValue, key, nested) : undefined
+      if (newValue === undefined) {
+        newValue = isObject(objValue)
+          ? objValue
+          : (isIndex(path[index + 1]) ? [] : {})
+      }
+    }
+    assignValue(nested, key, newValue)
+    nested = nested[key]
+  }
+  return object
+}  
+function set(object, path, value) {
+    return object == null ? object : baseSet(object, path, value);
+}
+
+var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ 
+set(object, 'a[0].b.c', 4);
+console.log(object.a[0].b.c);
+// => 4
+ 
+set(object, ['x', '0', 'y', 'z'], 5);
+console.log(object.x[0].y.z);
+// => 5
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
