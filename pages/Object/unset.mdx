@@ -1,0 +1,81 @@
+# `_.unset(object, path)`
+
+Removes the property at path of object.
+
+**Note**: This method mutates object.
+
+## Arguments
+
+`object (Object)`: The object to modify.  
+`path (Array|string)`: The path of the property to unset.  
+
+## Returns
+
+`(boolean)`: Returns true if the property is deleted, else false.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var unset = require("lodash/unset");
+var object = { 'a': [{ 'b': { 'c': 7 } }] };
+unset(object, 'a[0].b.c');
+// => true
+ 
+console.log(object);
+// => { 'a': [{ 'b': {} }] };
+ 
+unset(object, ['a', '0', 'b', 'c']);
+// => true
+ 
+console.log(object);
+// => { 'a': [{ 'b': {} }] };
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+function baseUnset(object, path) {
+  path = castPath(path, object)
+  object = parent(object, path)
+  return object == null || delete object[toKey(last(path))]
+}
+
+function unset(object, path) {
+    return object == null ? true : baseUnset(object, path);
+}
+
+var object = { 'a': [{ 'b': { 'c': 7 } }] };
+unset(object, 'a[0].b.c');
+// => true
+ 
+console.log(object);
+// => { 'a': [{ 'b': {} }] };
+ 
+unset(object, ['a', '0', 'b', 'c']);
+// => true
+ 
+console.log(object);
+// => { 'a': [{ 'b': {} }] };
+`;
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
