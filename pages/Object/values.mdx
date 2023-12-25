@@ -1,0 +1,82 @@
+# `_.values(object)`
+
+Creates an array of the own enumerable string keyed property values of object.
+
+**Note**: Non-object values are coerced to objects.
+
+## Arguments
+
+`object (Object)`: The object to query.
+
+## Returns
+
+`(Array)`: Returns the array of property values.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var values = require("lodash/values");
+function Foo() {
+  this.a = 1;
+  this.b = 2;
+}
+ 
+Foo.prototype.c = 3;
+ 
+values(new Foo);
+// => [1, 2] (iteration order is not guaranteed)
+ 
+values('hi');
+// => ['h', 'i']
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var isArrayLike = require("npm-lodash/isArrayLike");
+
+function keys(object) {
+  return Object.keys(Object(object));
+    // return isArrayLike(object) ? arrayLikeKeys(object) : Object.keys(Object(object));
+}
+function baseValues(object, props) {
+  return props == null ? [] : props.map((key) => object[key])
+}
+function values(object) {
+    return object == null ? [] : baseValues(object, keys(object));
+}
+
+function Foo() {
+  this.a = 1;
+  this.b = 2;
+}
+ 
+Foo.prototype.c = 3;
+ 
+values(new Foo);
+// => [1, 2] (iteration order is not guaranteed)
+ 
+values('hi');
+// => ['h', 'i']
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
