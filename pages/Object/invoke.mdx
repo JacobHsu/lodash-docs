@@ -1,0 +1,60 @@
+# `_.invoke(object, path, [args])`
+
+Invokes the method at path of object.
+
+## Arguments
+
+`object (Object)`: The object to query.  
+`path (Array|string)`: The path of the method to invoke.  
+`[args] (...*)`: The arguments to invoke the method with.
+
+## Returns
+
+`(*)`: Returns the result of the invoked method.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var invoke = require("lodash/invoke");
+var object = { 'a': [{ 'b': { 'c': [1, 2, 3, 4] } }] };
+ 
+invoke(object, 'a[0].b.c.slice', 1, 3);
+// => [2, 3]
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+  var code = `
+var last = require("lodash/last");
+function invoke(object, path, args) {
+    path = castPath(path, object);
+    object = parent(object, path);
+    const func = object == null ? object : object[toKey(last(path))];
+    return func == null ? undefined : func.apply(object, args);
+}  
+var object = { 'a': [{ 'b': { 'c': [1, 2, 3, 4] } }] };
+ 
+invoke(object, 'a[0].b.c.slice', 1, 3);
+// => [2, 3]
+`;
+
+return (
+
+<div>
+  <Embed source={code} />
+</div>
+); 
+};
+
+<DeepDemo />
