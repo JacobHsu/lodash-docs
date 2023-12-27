@@ -1,0 +1,44 @@
+# `_.chain(value)`
+
+Creates a lodash wrapper instance that wraps value with explicit method chain sequences enabled. The result of such sequences must be unwrapped with `_#value`.
+
+## Arguments
+
+`value (*)`: The value to wrap.
+
+## Returns
+
+`(Object)`: Returns the new `lodash` wrapper instance.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var _ = require("lodash");
+var users = [
+  { 'user': 'barney',  'age': 36 },
+  { 'user': 'fred',    'age': 40 },
+  { 'user': 'pebbles', 'age': 1 }
+];
+ 
+var youngest = 
+  _.chain(users)
+  .sortBy('age')
+  .map(function(o) {
+    return o.user + ' is ' + o.age;
+  })
+  .head()
+  .value();
+// => 'pebbles is 1'
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
