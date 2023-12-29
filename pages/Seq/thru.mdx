@@ -1,0 +1,38 @@
+# `_.thru(value, interceptor)`
+
+This method is like `_.tap` except that it returns the result of interceptor. The purpose of this method is to "pass thru" values replacing intermediate results in a method chain sequence.
+
+## Arguments
+
+`value (*)`: The value to provide to `interceptor`.  
+`interceptor (Function)`: The function to invoke.
+
+## Returns
+
+`(*)`: Returns the result of `interceptor`.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var _ = require("lodash");
+_('  abc  ')
+ .chain()
+ .trim()
+ .thru(function(value) {
+   return [value];
+ })
+ .value();
+// => ['abc']
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
