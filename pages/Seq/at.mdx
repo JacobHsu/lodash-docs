@@ -1,0 +1,33 @@
+# `_.prototype.at([paths])`
+
+This method is the wrapper version of `_.at`.
+
+## Arguments
+
+`[paths] (...(string|string[]))`: The property paths to pick.
+
+## Returns
+
+`(Object)`: Returns the new lodash wrapper instance.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var _ = require("lodash");
+var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
+ 
+_(object).at(['a[0].b.c', 'a[1]']).value();
+// => [3, 4]
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
