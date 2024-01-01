@@ -1,0 +1,35 @@
+# `_.prototype.next()`
+
+Gets the next value on a wrapped object following the iterator protocol.
+
+## Returns
+
+`(Object)`: Returns the next iterator value.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var _ = require("lodash");
+var wrapped = _([1, 2]);
+ 
+wrapped.next();
+// => { 'done': false, 'value': 1 }
+ 
+wrapped.next();
+// => { 'done': false, 'value': 2 }
+ 
+wrapped.next();
+// => { 'done': true, 'value': undefined }
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
