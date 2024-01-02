@@ -1,0 +1,41 @@
+# `_.prototype.plant(value)`
+
+Creates a clone of the chain sequence planting value as the wrapped value.
+
+## Arguments
+
+`value (*)`: The value to plant.
+
+## Returns
+
+`(Object)`: Returns the new lodash wrapper instance.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var _ = require("lodash");
+function square(n) {
+  return n * n;
+}
+ 
+var wrapped = _([1, 2]).map(square);
+var other = wrapped.plant([3, 4]);
+ 
+other.value();
+// => [9, 16]
+ 
+wrapped.value();
+// => [1, 4]
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
