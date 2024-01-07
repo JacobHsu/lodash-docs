@@ -1,0 +1,30 @@
+# `_.capitalize([string=''])`
+
+Converts string to camel case.Converts the first character of string to upper case and the remaining to lower case.
+## Arguments
+
+`[string=''] (string)`: The string to capitalize.
+
+## Returns
+
+`(string)`: Returns the capitalized string.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var _ = require("lodash");
+_.capitalize('FRED');
+// => 'Fred'
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
