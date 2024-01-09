@@ -1,0 +1,74 @@
+# `_.endsWith()`
+
+`_.endsWith([string=''], [target], [position=string.length])`
+
+Checks if `string` ends with the given target string.
+
+## Arguments
+
+`[string=''] (string)`: The string to inspect.  
+`[target] (string)`: The string to search for.  
+`[position=string.length] (number)`: The position to search up to.  
+
+## Returns
+
+`(boolean)`: Returns true if string ends with target, else false.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var endsWith = require("lodash/endsWith");
+endsWith('abc', 'c');
+// => true
+ 
+endsWith('abc', 'b');
+// => false
+ 
+endsWith('abc', 'b', 2);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function endsWith(string, target, position) {
+    const { length } = string;
+    position = position === undefined ? length : +position;
+    if (position < 0 || position !== position) {
+        position = 0;
+    } else if (position > length) {
+        position = length;
+    }
+    const end = position;
+    position -= target.length;
+    return position >= 0 && string.slice(position, end) === target;
+}
+
+endsWith('abc', 'c');
+// => true
+ 
+endsWith('abc', 'b');
+// => false
+ 
+endsWith('abc', 'b', 2);
+// => true
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
