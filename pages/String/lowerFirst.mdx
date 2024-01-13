@@ -1,0 +1,75 @@
+# `_.lowerFirst([string=''])`
+
+Converts the first character of string to lower case.
+
+## Arguments
+
+`[string=''] (string)`: The string to convert.
+
+## Returns
+
+`(string)`: Returns the converted string.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var _ = require("lodash");
+_.lowerFirst('Fred');
+// => 'fred'
+ 
+_.lowerFirst('FRED');
+// => 'fRED'
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+function createCaseFirst(methodName) {
+  return (string) => {
+    if (!string) {
+      return ''
+    }
+
+    const strSymbols = hasUnicode(string)
+      ? stringToArray(string)
+      : undefined
+
+    const chr = strSymbols
+      ? strSymbols[0]
+      : string[0]
+
+    const trailing = strSymbols
+      ? castSlice(strSymbols, 1).join('')
+      : string.slice(1)
+
+    return chr[methodName]() + trailing
+  }
+}
+const lowerFirst = createCaseFirst('toLowerCase');
+lowerFirst('Fred');
+// => 'fred'
+ 
+lowerFirst('FRED');
+// => 'fRED'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
