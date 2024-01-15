@@ -1,0 +1,84 @@
+# `_.pad()`
+
+`_.pad([string=''], [length=0], [chars=' '])`
+
+Pads string on the left and right sides if it's shorter than length. Padding characters are truncated if they can't be evenly divided by length.
+
+## Arguments
+
+`[string=''] (string)`: The string to pad.  
+`[length=0] (number)`: The padding length.  
+`[chars=' '] (string)`: The string used as padding.  
+
+## Returns
+
+`(string)`: Returns the padded string.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var _ = require("lodash");
+_.pad('abc', 8);
+// => '  abc   '
+ 
+_.pad('abc', 8, '_-');
+// => '_-abc_-_'
+ 
+_.pad('abc', 3);
+// => 'abc'
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+function createPadding(length, chars) {
+  chars = chars === undefined ? ' ' : baseToString(chars)
+
+  const charsLength = chars.length
+  if (charsLength < 2) {
+    return charsLength ? repeat(chars, length) : chars
+  }
+  const result = repeat(chars, Math.ceil(length / stringSize(chars)))
+  return hasUnicode(chars)
+    ? castSlice(stringToArray(result), 0, length).join('')
+    : result.slice(0, length)
+}
+function pad(string, length, chars) {
+    const strLength = length ? stringSize(string) : 0;
+    if (!length || strLength >= length) {
+        return string || '';
+    }
+    const mid = (length - strLength) / 2;
+    return createPadding(Math.floor(mid), chars) + string + createPadding(Math.ceil(mid), chars);
+}
+
+pad('abc', 8);
+// => '  abc   '
+ 
+pad('abc', 8, '_-');
+// => '_-abc_-_'
+ 
+pad('abc', 3);
+// => 'abc'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
+
