@@ -1,0 +1,58 @@
+# `_.parseInt()`
+
+`_.parseInt(string, [radix=10])`
+
+Converts string to an integer of the specified radix. If radix is undefined or 0, a radix of 10 is used unless value is a hexadecimal, in which case a radix of 16 is used.
+
+**Note**: This method aligns with the ES5 implementation of parseInt.
+
+## Arguments
+
+`string (string)`: The string to convert.  
+`[radix=10] (number)`: The radix to interpret value by.
+
+## Returns
+
+`(number)`: Returns the converted integer.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+  var code = `var _ = require("lodash");
+_.parseInt('08');
+// => 8
+ 
+_.map(['6', '08', '10'], _.parseInt);
+// => [6, 8, 10]
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+// https://github.com/lodash/lodash/blob/main/src/parseInt.ts
+
+_.parseInt('08');
+// => 8
+ 
+_.map(['6', '08', '10'], _.parseInt);
+// => [6, 8, 10]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
