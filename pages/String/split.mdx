@@ -1,0 +1,66 @@
+# `_.split()`
+
+`_.split([string=''], separator, [limit])`
+
+Splits string by separator.
+
+**Note**: This method is based on `String#split`.
+
+## Arguments
+
+`[string=''] (string)`: The string to split.  
+`separator (RegExp|string)`: The separator pattern to split by.  
+`[limit] (number)`: The length to truncate results to.  
+
+## Returns
+
+`(Array)`: Returns the string segments.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+_.split('a-b-c', '-', 2);
+// => ['a', 'b']
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+const MAX_ARRAY_LENGTH = 4294967295;
+
+function split(string, separator, limit) {
+    limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0;
+    if (!limit) {
+        return [];
+    }
+    if (string && (typeof separator === 'string' || (separator != null && !isRegExp(separator)))) {
+        if (!separator && hasUnicode(string)) {
+            return castSlice(stringToArray(string), 0, limit);
+        }
+    }
+    return string.split(separator, limit);
+}
+
+split('a-b-c', '-', 2);
+// => ['a', 'b']
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
