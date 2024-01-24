@@ -1,0 +1,73 @@
+# `_.startsWith()`
+
+`_.startsWith([string=''], [target], [position=0])`
+
+Checks if string starts with the given target string.
+
+## Arguments
+
+`[string=''] (string)`: The string to inspect.  
+`[target] (string)`: The string to search for.  
+`[position=0] (number)`: The position to search from.
+
+## Returns
+
+`(boolean)`: Returns true if string starts with target, else false.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+_.startsWith('abc', 'a');
+// => true
+ 
+_.startsWith('abc', 'b');
+// => false
+ 
+_.startsWith('abc', 'b', 1);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+function startsWith(string, target, position) {
+    const { length } = string;
+    position = position == null ? 0 : position;
+    if (position < 0) {
+        position = 0;
+    } else if (position > length) {
+        position = length;
+    }
+    target = target;
+    return string.slice(position, position + target.length) === target;
+}
+
+startsWith('abc', 'a');
+// => true
+ 
+startsWith('abc', 'b');
+// => false
+ 
+startsWith('abc', 'b', 1);
+// => true
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
