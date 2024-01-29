@@ -1,0 +1,73 @@
+# `_.trim()`
+
+`_.trim([string=''], [chars=whitespace])`  
+
+Removes leading and trailing whitespace or specified characters from `string`.
+
+## Arguments
+
+`[string=''] (string)`: The string to trim.  
+`[chars=whitespace] (string)`: The characters to trim.
+
+## Returns
+
+`(string)`: Returns the trimmed string. 
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+_.trim('  abc  ');
+// => 'abc'
+ 
+_.trim('-_-abc-_-', '_-');
+// => 'abc'
+ 
+_.map(['  foo  ', '  bar  '], _.trim);
+// => ['foo', 'bar']
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `function trim(string: string, chars: string) {
+    if (string && chars === undefined) {
+        return string.trim();
+    }
+    if (!string || !chars) {
+        return string || '';
+    }
+    const strSymbols = stringToArray(string);
+    const chrSymbols = stringToArray(chars);
+    const start = charsStartIndex(strSymbols, chrSymbols);
+    const end = charsEndIndex(strSymbols, chrSymbols) + 1;
+
+    return castSlice(strSymbols, start, end).join('');
+}
+
+trim('  abc  ');
+// => 'abc'
+ 
+trim('-_-abc-_-', '_-');
+// => 'abc'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
