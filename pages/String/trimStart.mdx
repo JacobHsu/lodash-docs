@@ -1,8 +1,8 @@
-# `_.trimEnd()`
+# `_.trimStart()`
 
-`_.trimEnd([string=''], [chars=whitespace])`  
+`_.trimStart([string=''], [chars=whitespace])`  
 
-Removes trailing whitespace or specified characters from string.
+Removes leading whitespace or specified characters from string.
 
 ## Arguments
 
@@ -19,11 +19,11 @@ import Embed from "runkit-embed-react";
 
 export const Demo = () => {
 var code = `var _ = require("lodash");
-_.trimEnd('  abc  ');
-// => '  abc'
+_.trimStart('  abc  ');
+// => 'abc  '
  
-_.trimEnd('-_-abc-_-', '_-');
-// => '-_-abc'
+_.trimStart('-_-abc-_-', '_-');
+// => 'abc-_-'
 `;
   return (
     <div>
@@ -44,7 +44,7 @@ function castSlice(array, start, end) {
   end = end === undefined ? length : end
   return (!start && end >= length) ? array : slice(array, start, end)
 }
-function trimEnd(string, chars) {
+function trimStart(string, chars) {
     if (string && chars === undefined) {
         return string[methodName]();
     }
@@ -52,15 +52,15 @@ function trimEnd(string, chars) {
         return string || '';
     }
     const strSymbols = stringToArray(string);
-    const end = charsEndIndex(strSymbols, stringToArray(chars)) + 1;
-    return castSlice(strSymbols, 0, end).join('');
+    const start = charsStartIndex(strSymbols, stringToArray(chars));
+    return castSlice(strSymbols, start).join('');
 }
 
-trimEnd('  abc  ');
-// => '  abc'
+trimStart('  abc  ');
+// => 'abc  '
  
-trimEnd('-_-abc-_-', '_-');
-// => '-_-abc'
+trimStart('-_-abc-_-', '_-');
+// => 'abc-_-'
 `   
   return (
     <div>
