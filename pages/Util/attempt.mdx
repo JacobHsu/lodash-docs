@@ -1,0 +1,81 @@
+# `_.attempt(func, [args])`
+
+Attempts to invoke func, returning either the result or the caught error object. Any additional arguments are provided to func when it's invoked.
+
+## Arguments
+
+`func (Function)`: The function to attempt.  
+`[args] (...*)`: The arguments to invoke func with.
+
+## Returns
+
+`(*)`: Returns the func result or error object.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+// Avoid throwing errors for invalid selectors.
+var elements = _.attempt(function(selector) {
+  return document.querySelectorAll(selector);
+}, '>_>');
+ 
+if (_.isError(elements)) {
+  elements = [];
+}
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+function attempt(func, ...args) {
+    try {
+        return func(...args);
+    } catch (e) {
+        return isError(e) ? e : new Error(e);
+    }
+}
+// Avoid throwing errors for invalid selectors.
+var elements = attempt(function(selector) {
+  return document.querySelectorAll(selector);
+}, '>_>');
+ 
+ function isError(value) {
+    if (!isObjectLike(value)) {
+        return false;
+    }
+    const tag = getTag(value);
+    return (
+        tag === '[object Error]' ||
+        tag === '[object DOMException]' ||
+        (typeof value.message === 'string' &&
+            typeof value.name === 'string' &&
+            !isPlainObject(value))
+    );
+}
+
+if (isError(elements)) {
+  elements = [];
+}
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
