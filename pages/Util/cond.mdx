@@ -1,0 +1,92 @@
+# `_.cond(pairs)`
+
+Creates a function that iterates over pairs and invokes the corresponding function of the first predicate to return truthy. The predicate-function pairs are invoked with the this binding and arguments of the created function.
+
+## Arguments
+
+`pairs (Array)`: The predicate-function pairs.  
+
+## Returns
+
+`(Function)`: Returns the new composite function.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+var func = _.cond([
+  [_.matches({ 'a': 1 }),           _.constant('matches A')],
+  [_.conforms({ 'b': _.isNumber }), _.constant('matches B')],
+  [_.stubTrue,                      _.constant('no match')]
+]);
+ 
+func({ 'a': 1, 'b': 2 });
+// => 'matches A'
+ 
+func({ 'a': 0, 'b': 1 });
+// => 'matches B'
+ 
+func({ 'a': '1', 'b': '2' });
+// => 'no match'
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+var _ = require("lodash");
+function cond(pairs: any[]) {
+    const length = pairs == null ? 0 : pairs.length;
+
+    pairs = !length
+        ? []
+        : map(pairs, (pair: any[]) => {
+              if (typeof pair[1] !== 'function') {
+                  throw new TypeError('Expected a function');
+              }
+              return [pair[0], pair[1]];
+          });
+
+    return function (this: any, ...args: any[]) {
+        for (const pair of pairs) {
+            if (pair[0].apply(this, args)) {
+                return pair[1].apply(this, args);
+            }
+        }
+    };
+}
+var func = cond([
+  [_.matches({ 'a': 1 }),           _.constant('matches A')],
+  [_.conforms({ 'b': _.isNumber }), _.constant('matches B')],
+  [_.stubTrue,                      _.constant('no match')]
+]);
+ 
+func({ 'a': 1, 'b': 2 });
+// => 'matches A'
+ 
+func({ 'a': 0, 'b': 1 });
+// => 'matches B'
+ 
+func({ 'a': '1', 'b': '2' });
+// => 'no match'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
