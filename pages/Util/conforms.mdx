@@ -1,0 +1,67 @@
+# `_.conforms(source)`
+
+Creates a function that invokes the predicate properties of source with the corresponding property values of a given object, returning true if all predicates return truthy, else false.
+
+**Note**: The created function is equivalent to _.conformsTo with source partially applied.
+
+## Arguments
+
+`source (Object)`: The object of property predicates to conform to.
+
+## Returns
+
+`(Function)`: Returns the new spec function.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+var objects = [
+  { 'a': 2, 'b': 1 },
+  { 'a': 1, 'b': 2 }
+];
+ 
+_.filter(objects, _.conforms({ 'b': function(n) { return n > 1; } }));
+// => [{ 'a': 1, 'b': 2 }]
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var _ = require("lodash");
+const CLONE_DEEP_FLAG = 1;
+function baseConforms(source) {
+  const props = keys(source)
+  return (object) => baseConformsTo(object, source, props)
+}
+function conforms(source) {
+    return baseConforms(baseClone(source, CLONE_DEEP_FLAG));
+}
+var objects = [
+  { 'a': 2, 'b': 1 },
+  { 'a': 1, 'b': 2 }
+];
+ 
+_.filter(objects, conforms({ 'b': function(n) { return n > 1; } }));
+// => [{ 'a': 1, 'b': 2 }]
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
+
