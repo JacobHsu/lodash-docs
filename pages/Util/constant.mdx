@@ -1,0 +1,35 @@
+# `_.constant(value)`
+
+Creates a function that returns `value`.
+
+## Arguments
+
+`value (*)`: The value to return from the new function.
+
+## Returns
+
+`(Function)`: Returns the new constant function.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+var objects = _.times(2, _.constant({ 'a': 1 }));
+ 
+console.log(objects);
+// => [{ 'a': 1 }, { 'a': 1 }]
+ 
+console.log(objects[0] === objects[1]);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
