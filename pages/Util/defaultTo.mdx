@@ -1,0 +1,55 @@
+# `_.defaultTo(value, defaultValue)`
+
+Checks value to determine whether a default value should be returned in its place. The `defaultValue` is returned if `value` is `NaN`, `null`, or `undefined`.
+
+## Arguments
+
+`value (*)`: The value to check.  
+`defaultValue (*)`: The default value.  
+
+## Returns
+
+`(*)`: Returns the resolved value.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+_.defaultTo(1, 10);
+// => 1
+ 
+_.defaultTo(undefined, 10);
+// => 10
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `
+function defaultTo(value, defaultValue) {
+    return value == null || value !== value ? defaultValue : value;
+}
+defaultTo(1, 10);
+// => 1
+ 
+defaultTo(undefined, 10);
+// => 10
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
