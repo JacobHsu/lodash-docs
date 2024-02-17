@@ -1,0 +1,73 @@
+# `_.flow([funcs])`
+
+Creates a function that returns the result of invoking the given functions with the this binding of the created function, where each successive invocation is supplied the return value of the previous.
+
+## Arguments
+
+`[funcs] (...(Function|Function[]))`: The functions to invoke.
+
+## Returns
+
+`(Function):` Returns the new composite function.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+function square(n) {
+  return n * n;
+}
+ 
+var addSquare = _.flow([_.add, square]);
+addSquare(1, 2);
+// => 9
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var _ = require("lodash");
+function flow(...funcs: Function[]) {
+    const length = funcs.length;
+    let i = length;
+    while (i--) {
+        if (typeof funcs[i] !== 'function') {
+            throw new TypeError('Expected a function');
+        }
+    }
+    return function (this: any, ...args: any[]) {
+        let j = 0;
+        let result = length ? funcs[j].apply(this, args) : args[0];
+        while (++j < length) {
+            result = funcs[j].call(this, result);
+        }
+        return result;
+    };
+}
+
+function square(n) {
+  return n * n;
+}
+ 
+var addSquare = _.flow([_.add, square]);
+addSquare(1, 2);
+// => 9
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
