@@ -1,0 +1,31 @@
+# `_.identity(value)`
+
+This method returns the first argument it receives.
+
+## Arguments
+
+`value (*)`: Any value.
+
+## Returns
+
+`(*)`: Returns value.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+var object = { 'a': 1 };
+ 
+console.log(_.identity(object) === object);
+// => true
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
