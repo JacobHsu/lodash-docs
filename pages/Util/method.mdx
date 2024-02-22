@@ -1,0 +1,73 @@
+# `_.method(path, [args])`
+
+Creates a function that invokes the method at path of a given object. Any additional arguments are provided to the invoked method.
+
+## Arguments
+
+`path (Array|string)`: The path of the method to invoke.   
+`[args] (...*)`: The arguments to invoke the method with.
+
+## Returns
+
+`(Function)`: Returns the new invoker function.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+var objects = [
+  { 'a': { 'b': _.constant(2) } },
+  { 'a': { 'b': _.constant(1) } }
+];
+ 
+_.map(objects, _.method('a.b'));
+// => [2, 1]
+ 
+_.map(objects, _.method(['a', 'b']));
+// => [2, 1]
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var _ = require("lodash");
+function method(path, args) {
+    return (object) => invoke(object, path, args);
+}
+function invoke(object, path, args) {
+    path = castPath(path, object);
+    object = parent(object, path);
+    const func = object == null ? object : object[toKey(last(path))];
+    return func == null ? undefined : func.apply(object, args);
+}
+
+var objects = [
+  { 'a': { 'b': _.constant(2) } },
+  { 'a': { 'b': _.constant(1) } }
+];
+ 
+_.map(objects, method('a.b'));
+// => [2, 1]
+ 
+_.map(objects, method(['a', 'b']));
+// => [2, 1]
+
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
