@@ -1,0 +1,77 @@
+# `_.nthArg([n=0])`
+
+Creates a function that gets the argument at index n. If n is negative, the nth argument from the end is returned.
+
+## Arguments
+
+`[n=0] (number)`: The index of the argument to return.
+
+## Returns
+
+`(Function)`: Returns the new pass-thru function.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+var func = _.nthArg(1);
+func('a', 'b', 'c', 'd');
+// => 'b'
+ 
+var func = _.nthArg(-2);
+func('a', 'b', 'c', 'd');
+// => 'c'
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var _ = require("lodash");
+const MAX_SAFE_INTEGER = 9007199254740991
+function isIndex(value, length) {
+  const type = typeof value
+  length = length == null ? MAX_SAFE_INTEGER : length
+
+  return !!length &&
+    (type === 'number' ||
+      (type !== 'symbol' && reIsUint.test(value))) &&
+        (value > -1 && value % 1 === 0 && value < length)
+}
+function nth(array, n) {
+    const length = array == null ? 0 : array.length;
+    if (!length) {
+        return;
+    }
+    n += n < 0 ? length : 0;
+    // eslint-disable-next-line consistent-return
+    return isIndex(n, length) ? array[n] : undefined;
+}
+function nthArg(n) {
+    return (...args) => nth(args, n);
+}
+var func = nthArg(1);
+func('a', 'b', 'c', 'd');
+// => 'b'
+ 
+var func = nthArg(-2);
+func('a', 'b', 'c', 'd');
+// => 'c'
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
