@@ -1,0 +1,70 @@
+# `_.property(path)`
+
+Creates a function that returns the value at path of a given object.
+
+## Arguments
+
+`path (Array|string)`: The path of the property to get.
+
+## Returns
+
+`(Function)`: Returns the new accessor function.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+var objects = [
+  { 'a': { 'b': 2 } },
+  { 'a': { 'b': 1 } }
+];
+ 
+_.map(objects, _.property('a.b'));
+// => [2, 1]
+ 
+_.map(_.sortBy(objects, _.property(['a', 'b'])), 'a.b');
+// => [1, 2]
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var _ = require("lodash");
+function isKey(value, object) {
+  if (Array.isArray(value)) {
+    return false
+  }
+  const type = typeof value
+  if (type === 'number' || type === 'boolean' || value == null || isSymbol(value)) {
+    return true
+  }
+  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
+    (object != null && value in Object(object))
+}
+
+function baseProperty(key) {
+  return (object) => object == null ? undefined : object[key]
+}
+
+function property(path) {
+    return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path);
+}
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
