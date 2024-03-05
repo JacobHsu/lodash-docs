@@ -1,0 +1,91 @@
+# `_.range([start=0], end, [step=1])`
+
+Creates an array of numbers (positive and/or negative) progressing from start up to, but not including, end. A step of -1 is used if a negative start is specified without an end or step. If end is not specified, it's set to start with start then set to 0.
+
+**Note**: JavaScript follows the IEEE-754 standard for resolving floating-point values which can produce unexpected results.
+
+
+
+## Arguments
+
+`[start=0] (number)`: The start of the range.  
+`end (number)`: The end of the range.  
+`[step=1] (number)`: The value to increment or decrement by.
+
+## Returns
+
+`(Array)`: Returns the range of numbers.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+_.range(4);
+// => [0, 1, 2, 3]
+ 
+_.range(-4);
+// => [0, -1, -2, -3]
+ 
+_.range(1, 5);
+// => [1, 2, 3, 4]
+ 
+_.range(0, 20, 5);
+// => [0, 5, 10, 15]
+ 
+_.range(0, -4, -1);
+// => [0, -1, -2, -3]
+ 
+_.range(1, 4, 0);
+// => [1, 1, 1]
+ 
+_.range(0);
+// => []
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var _ = require("lodash");
+function baseRange(start, end, step, fromRight) {
+  let index = -1
+  let length = Math.max(Math.ceil((end - start) / (step || 1)), 0)
+  const result = new Array(length)
+
+  while (length--) {
+    result[fromRight ? length : ++index] = start
+    start += step
+  }
+  return result
+}
+function createRange(fromRight) {
+  return (start, end, step) => {
+    start = toFinite(start)
+    if (end === undefined) {
+      end = start
+      start = 0
+    } else {
+      end = toFinite(end)
+    }
+    step = step === undefined ? (start < end ? 1 : -1) : toFinite(step)
+    return baseRange(start, end, step, fromRight)
+  }
+}
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
