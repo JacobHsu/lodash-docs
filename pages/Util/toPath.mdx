@@ -1,0 +1,73 @@
+# `_.toPath(value)`
+
+Converts value to a property path array.
+
+## Arguments
+
+`value (*)`: The value to convert.
+
+## Returns
+
+`(Array)`: Returns the new property path array.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+_.toPath('a.b.c');
+// => ['a', 'b', 'c']
+ 
+_.toPath('a[0].b.c');
+// => ['a', '0', 'b', 'c']
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
+
+## Deep
+
+export const DeepDemo = () => {
+var code =  `var _ = require("lodash");
+var getTag = require("npm-lodash/getTag");
+function copyArray(source, array) {
+  let index = -1
+  const length = source.length
+
+  array || (array = new Array(length))
+  while (++index < length) {
+    array[index] = source[index]
+  }
+  return array
+}
+function isSymbol(value) {
+    const type = typeof value;
+    return (
+        type === 'symbol' ||
+        (type === 'object' && value != null && getTag(value) === '[object Symbol]')
+    );
+}
+function toPath(value) {
+    if (Array.isArray(value)) {
+        return map(value, toKey);
+    }
+    return isSymbol(value) ? [value] : copyArray(stringToPath(value));
+}
+
+toPath('a.b.c');
+// => ['a', 'b', 'c']
+`   
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<DeepDemo/>
