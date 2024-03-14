@@ -1,0 +1,32 @@
+# `_.uniqueId([prefix=''])`
+
+Generates a unique ID. If prefix is given, the ID is appended to it.
+
+## Arguments
+
+`[prefix=''] (string)`: The value to prefix the ID with.
+
+## Returns
+
+`(string)`: Returns the unique ID.
+
+## Example
+
+import Embed from "runkit-embed-react";
+
+export const Demo = () => {
+var code = `var _ = require("lodash");
+_.uniqueId('contact_');
+// => 'contact_104'
+ 
+_.uniqueId();
+// => '105'
+`;
+  return (
+    <div>
+      <Embed source={code} />
+    </div>
+  );
+};
+
+<Demo />
